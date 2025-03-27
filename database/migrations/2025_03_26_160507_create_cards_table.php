@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('collector_number')->notNull();
             $table->enum('rarity', ['common', 'uncommon', 'rare', 'mythic'])->notNull();
-            $table->text('img_url')->notNull();
+            $table->text('img')->notNull();
+            $table->text('art_crop')->notNull();
             $table->string('layout', 20)->notNull();
             $table->integer('mana_value')->notNull();
             $table->date('released_at')->notNull();
