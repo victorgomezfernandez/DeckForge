@@ -9,13 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->integer('collector_number', 3);
-            $table->string('rarity',10);
-            $table->timestamps();
+            $table->integer('collector_number')->notNull();
+            $table->enum('rarity', ['common', 'uncommon', 'rare', 'mythic'])->notNull();
+            $table->text('img_url')->notNull();
+            $table->string('layout', 20)->notNull();
+            $table->integer('mana_value')->notNull();
+            $table->date('released_at')->notNull();
+            $table->foreignId('set_id')->constrained('sets')->onDelete('cascade');
         });
     }
 

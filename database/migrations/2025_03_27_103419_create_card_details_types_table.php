@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('types', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique;
+        Schema::create('card_details_types', function (Blueprint $table) {
+            $table->foreignId('type_id')->constrained('types');
+            $table->foreignId('card_details_id')->constrained('card_details')->onDelete('cascade');
+            $table->primary(['type_id','card_details_id']);
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('types');
+        Schema::dropIfExists('card_details_types');
     }
 };

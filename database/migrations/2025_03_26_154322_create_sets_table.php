@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name', 150);
             $table->string('code', 5)->unique();
             $table->date('release_date');
-            $table->timestamps();
         });
     }
 

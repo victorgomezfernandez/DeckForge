@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('types', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique;
+        Schema::create('color_identities', function (Blueprint $table) {
+            $table->foreignId('card_id')->constrained('cards')->onDelete('cascade');
+            $table->foreignId('color_id')->constrained('colors');
+            $table->primary(['card_id','color_id']);
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('types');
+        Schema::dropIfExists('color_identities');
     }
 };
