@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable(true);
+            $table->text('img')->nullable(true);
             $table->boolean('public')->default(false);
             $table->foreignId('format_id')->constrained('formats')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');

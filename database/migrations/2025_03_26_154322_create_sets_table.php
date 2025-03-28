@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 150);
             $table->string('code', 5)->unique();
+            $table->text('symbol');
             $table->date('release_date');
         });
     }
