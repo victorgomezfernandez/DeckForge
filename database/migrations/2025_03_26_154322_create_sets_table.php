@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sets', function (Blueprint $table) {
             $table->id();
             $table->string('name', 150);
-            $table->string('code', 5)->unique();
+            $table->string('code', 6)->unique();
             $table->text('symbol');
             $table->date('release_date');
         });
