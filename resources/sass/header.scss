@@ -1,0 +1,48 @@
+.nav-link.active {
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    padding-bottom: 4px;
+}
+
+.nav-link.underline {
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.nav-link.underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease-in-out;
+    justify-self: center;
+}
+
+.nav-link.underline:hover::after {
+    width: 100%;
+}
+
+.navbar-nav {
+    gap: 40px;
+    font-size: larger;
+}
+
+.authenticated-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.authenticated-link::before {
+    content: "";
+    display: block;
+    width: 2px;
+    height: 30px;
+    background-color: black;
+    margin-right: 30px;
+}
