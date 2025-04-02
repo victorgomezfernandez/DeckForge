@@ -14,8 +14,6 @@ class Type extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
 
-    protected $keyType = 'long';
-
     protected $fillable = [
         'name'
     ];

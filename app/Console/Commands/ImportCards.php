@@ -18,7 +18,7 @@ class ImportCards extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Import cards from LEA to 7ED (just core sets)';
 
     /**
      * Execute the console command.

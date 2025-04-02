@@ -16,7 +16,6 @@ class Keyword extends Model
 
     protected $fillable = [
         'name',
-        'description',
     ];
 
     public $timestamps = false;

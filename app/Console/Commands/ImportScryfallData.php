@@ -30,6 +30,8 @@ class ImportScryfallData extends Command
         $this->info("Fetching all the info");
         
         $this->call('app:import-sets');
+        
+        $this->call('app:import-keywords');
 
         $this->info('Import finished');
     }
