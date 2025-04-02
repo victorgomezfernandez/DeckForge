@@ -5,26 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Set extends Model
+class Type extends Model
 {
     use HasFactory;
 
-    protected $table = 'sets';
+    protected $table = 'types';
 
     protected $primaryKey = 'id';
     public $incrementing = true;
 
+    protected $keyType = 'long';
+
     protected $fillable = [
-        'name',
-        'code',
-        'symbol',
-        'release_date',
+        'name'
     ];
 
     public $timestamps = false;
-
-    public function cards() {
-        return $this->hasMany(Card::class);
-    }
-
 }

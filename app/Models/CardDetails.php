@@ -5,26 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Set extends Model
+class CardDetails extends Model
 {
     use HasFactory;
 
-    protected $table = 'sets';
+    protected $table = 'card_details';
 
     protected $primaryKey = 'id';
     public $incrementing = true;
 
     protected $fillable = [
         'name',
-        'code',
-        'symbol',
-        'release_date',
+        'power',
+        'toughness',
+        'loyalty',
+        'defense',
+        'oracle_text',
+        'flavor_text',
+        'card_id'
     ];
 
     public $timestamps = false;
-
-    public function cards() {
-        return $this->hasMany(Card::class);
+    
+    public function card() {
+        return $this->belongsTo(Card::class);
     }
-
 }

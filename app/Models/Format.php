@@ -14,12 +14,13 @@ class Format extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
 
-    protected $keyType = 'long';
-
     protected $fillable = [
         'name'
     ];
 
     public $timestamps = false;
     
+    public function decks() {
+        return $this->hasMany(Deck::class);
+    }
 }

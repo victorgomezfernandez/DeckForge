@@ -12,10 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('legalities', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('card_id')->constrained('cards')->onDelete('cascade');
             $table->foreignId('format_id')->constrained('formats');
-            $table->foreignId('legality_status_id')->constrained('legality_statuses');
-            $table->primary(['card_id', 'format_id']);
+            $table->enum('name', ['not_legal', 'legal', 'banned', 'restricted']);
+            $table->boolean('status')->default(true);
+            $table->timestamps();
         });
     }
 
