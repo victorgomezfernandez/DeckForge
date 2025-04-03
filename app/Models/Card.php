@@ -34,4 +34,16 @@ class Card extends Model
     public function decks() {
         return $this->belongsToMany(Deck::class, 'cards_deck');
     }
+
+    public function keywords() {
+        return $this->belongsToMany(Keyword::class, 'card_keywords');
+    }
+    
+    public function colors() {
+        return $this->belongsToMany(Color::class, 'card_deck_colors');
+    }
+
+    public function color_identities() {
+        return $this->belongsToMany(Color::class, 'color_identities');
+    }
 }

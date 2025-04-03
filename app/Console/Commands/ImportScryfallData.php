@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Set;
+use Database\Seeders\DatabaseSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -30,8 +31,10 @@ class ImportScryfallData extends Command
         $this->info("Fetching all the info");
         
         $this->call('app:import-sets');
-        
-        $this->call('app:import-keywords');
+
+        $this->call('app:import-formats');
+
+        $this->call('app:import-cards');
 
         $this->info('Import finished');
     }

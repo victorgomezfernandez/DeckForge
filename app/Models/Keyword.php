@@ -19,4 +19,8 @@ class Keyword extends Model
     ];
 
     public $timestamps = false;
+
+    public function cards() {
+        return $this->belongsToMany(Card::class, 'card_keywords');
+    }
 }

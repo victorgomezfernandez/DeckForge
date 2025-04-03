@@ -20,6 +20,5 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(ColorSeeder::class);
-        $this->call(FormatSeeder::class);
     }
 }

@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mana_costs', function (Blueprint $table) {
+            $table->id();
             $table->integer('amount');
             $table->foreignId('card_details_id')->constrained('card_details')->onDelete('cascade');
             $table->foreignId('color_id')->constrained('colors');

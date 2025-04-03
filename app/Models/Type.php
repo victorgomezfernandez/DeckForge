@@ -19,4 +19,8 @@ class Type extends Model
     ];
 
     public $timestamps = false;
+
+    public function card_details() {
+        return $this->belongsToMany(CardDetails::class, 'card_details_types');
+    }
 }

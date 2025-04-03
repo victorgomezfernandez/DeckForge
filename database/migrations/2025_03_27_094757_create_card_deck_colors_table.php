@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('card_deck_colors', function (Blueprint $table) {
-            $table->foreignId('card_id')->constrained('cards')->onDelete('cascade')->nullable(true);
-            $table->foreignId('deck_id')->constrained('decks')->onDelete('cascade')->nullable(true);
+            $table->foreignId('card_id')->nullable()->constrained('cards')->onDelete('cascade');
+            $table->foreignId('deck_id')->nullable()->constrained('decks')->onDelete('cascade');
             $table->foreignId('color_id')->constrained('colors');
         });
     }

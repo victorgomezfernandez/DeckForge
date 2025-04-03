@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->integer('collector_number')->notNull();
-            $table->enum('rarity', ['common', 'uncommon', 'rare', 'mythic'])->notNull();
-            $table->text('img')->notNull();
-            $table->text('art_crop')->notNull();
-            $table->string('layout', 20)->notNull();
-            $table->integer('mana_value')->notNull();
-            $table->date('released_at')->notNull();
+            $table->string('collector_number')->nullable(true);
+            $table->enum('rarity', ['common', 'uncommon', 'rare', 'mythic'])->nullable(true);
+            $table->text('img')->nullable(true);
+            $table->text('art_crop')->nullable(true);
+            $table->string('layout', 20)->nullable(true);
+            $table->double('mana_value')->nullable(true);
+            $table->date('released_at')->nullable(true);
             $table->foreignId('set_id')->constrained('sets')->onDelete('cascade');
         });
     }

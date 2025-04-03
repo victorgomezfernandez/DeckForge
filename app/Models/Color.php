@@ -19,5 +19,13 @@ class Color extends Model
         'code'
     ];
 
+    public function cards() {
+        return $this->belongsToMany(Card::class, 'card_deck_colors');
+    }
+
+    public function color_identities() {
+        return $this->belongsToMany(Card::class, 'color_identities');
+    }
+
     public $timestamps = false;
 }

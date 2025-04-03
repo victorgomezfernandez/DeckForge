@@ -30,4 +30,8 @@ class CardDetails extends Model
     public function card() {
         return $this->belongsTo(Card::class);
     }
+    
+    public function types() {
+        return $this->belongsToMany(Type::class, 'card_details_types');
+    }
 }
