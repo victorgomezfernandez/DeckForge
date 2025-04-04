@@ -1,0 +1,73 @@
+.set-card {
+    background-color: #D82596;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s;
+    cursor: pointer;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.set-card:hover {
+    transform: scale(95%);
+    background-color: #b51f7e;
+}
+
+.set-card img {
+    height: auto;
+    max-height: 210px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.set-title {
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.set-info {
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    color: #f2f2f2;
+}
+
+.search-input {
+    background-color: #C8C8C8;
+    border-radius: 45px 0 0 45px;
+    height: 40px;
+}
+
+.search-input:focus {
+    background-color: #a9a9a9;
+    outline: none;
+    box-shadow: none;
+}
+
+.search-button {
+    background-color: #D82596;
+    border-radius: 0 20px 20px 0;
+    height: 38px;
+    padding: 0 10px;
+}
+
+.search-button:hover {
+    background-color: #ba2584;
+}
+
+.search-dropdown {
+    background-color: #C8C8C8;
+}
+
+.search-dropdown:hover {
+    background-color: #a9a9a9;
+}

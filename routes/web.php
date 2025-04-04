@@ -15,7 +15,11 @@ Route::get('/home', function () {
 
 Route::get('decks', [DecksController::class, 'decks'])->name('decks');
 
-Route::get('cards', [CardsController::class, 'cards'])->name('cards');
+Route::get('sets', [CardsController::class, 'sets'])->name('sets');
+
+Route::get('/search-sets', [CardsController::class, 'searchSets'])->name('search-sets');
+Route::get('/search-cards', [CardsController::class, 'searchCards'])->name('search-cards');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

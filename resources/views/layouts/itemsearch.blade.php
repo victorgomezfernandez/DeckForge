@@ -22,5 +22,8 @@
             <input type="hidden" name="type" id="selectedType" value="Sets" />
         </form>
     </div>
+
+    <main class="py-4">
+        @yield('results')
+    </main>
 </div>
-@endsection

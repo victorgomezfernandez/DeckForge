@@ -16,7 +16,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/sass/header.scss', 'resources/sass/login-register.scss',
+    @vite(['resources/sass/app.scss', 'resources/sass/header.scss', 'resources/sass/login-register.scss', 'resources/sass/sets.scss',
     'resources/js/app.js'])
 </head>
 
@@ -50,7 +50,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('cards') ? 'active' : 'underline' }}"
-                                href="{{ route('cards') }}">
+                                href="{{ route('sets') }}">
                                 {{ __('Cards') }}
                             </a>
                         </li>
@@ -115,7 +115,7 @@
             @yield('content')
         </main>
     </div>
-    <footer style="background-color: #333333; color: white; width: 100%; padding: 20px; position: absolute; bottom: 0;">
+    {{-- <footer style="background-color: #333333; color: white; width: 100%; padding: 20px; position: absolute; bottom: 0;">
         <div class="container">
             <div class="row" style="text-align: center;">
                 <p>Magic: The Gathering and Wizards of the Coast are trademarks of Wizards of the Coast LLC. © 1993-2025
@@ -135,7 +135,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 </body>
 
 </html>

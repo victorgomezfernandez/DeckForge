@@ -37,7 +37,7 @@ class ImportCards extends Command
      */
     public function handle()
     {
-        $url = "https://api.scryfall.com/cards/search?q=set:lea lang:en unique:prints";
+        $url = "https://api.scryfall.com/cards/search?q=(set:lea OR set:leb OR set:3ed OR set:4ed OR set:5ed OR set:6ed OR set:7ed OR set:8ed) lang:en unique:prints";
         $response = Http::get($url);
 
         if ($response->failed()) {
@@ -81,7 +81,7 @@ class ImportCards extends Command
                 if (sizeof($keywords) > 0) {
                     foreach ($keywords as $keywordName) {
                         $keyword = Keyword::firstOrCreate(['name' => $keywordName]);
-                        $createdCard->keywords()->attach($keyword->id);
+                        $createdCard->keywords()->syncWithoutDetaching($keyword->id);
                     }
                 }
 
@@ -90,7 +90,7 @@ class ImportCards extends Command
                 if (sizeof($colors) > 0) {
                     foreach ($colors as $colorCode) {
                         $color = Color::where('code', $colorCode)->first();
-                        $createdCard->colors()->attach($color->id);
+                        $createdCard->colors()->syncWithoutDetaching($color->id);
                     }
                 }
 
@@ -99,7 +99,7 @@ class ImportCards extends Command
                 if (sizeof($color_identities) > 0) {
                     foreach ($color_identities as $single_color_identity) {
                         $color_identity = Color::where('code', $single_color_identity)->first();
-                        $createdCard->color_identities()->attach($color_identity->id);
+                        $createdCard->color_identities()->syncWithoutDetaching($color_identity->id);
                     }
                 }
 
@@ -122,7 +122,7 @@ class ImportCards extends Command
                     $allTypes = array_merge($superAndTypes, $subTypes);
                     foreach ($allTypes as $typeName) {
                         $type = Type::firstOrCreate(['name' => $typeName]);
-                        $createdCardDetails->types()->attach($type->id);
+                        $createdCardDetails->types()->syncWithoutDetaching($type->id);
                     }
 
                     if (!empty($card['mana_cost'])) {
