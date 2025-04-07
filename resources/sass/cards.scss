@@ -1,0 +1,110 @@
+.card-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.card-card:hover {
+    transform: scale(95%);
+}
+
+.card-card img {
+    border-radius: 13px;
+}
+
+/* Asegura que el modal se centre y tenga tamaño fijo */
+.custom-modal-size {
+    max-width: 1000px;
+    max-height: 400px;
+}
+
+.modal-content.card-modal {
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #E0E0E0;
+}
+
+
+.card-modal {
+    background-color: #E0E0E0;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    width: fit-content;
+    justify-self: center;
+}
+
+.card-modal-img {
+    border-radius: 20px;
+    width: 345px;
+}
+
+.card-img-set {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.set-details {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.name-mana {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.name-mana span {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.cost-img {
+    width: 25px;
+    height: 25px;
+}
+
+.types-line {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.oracle-text {
+    font-size: 15px;
+}
+
+.flavor-text {
+    font-size: 15px;
+}
+
+.card-info {
+    padding: 15px;
+}
+
+@media (max-width: 1024px) {
+    .custom-modal-size {
+        width: 95vw;
+        height: auto;
+    }
+
+    .modal-content.card-modal {
+        flex-direction: column;
+        height: auto;
+    }
+}

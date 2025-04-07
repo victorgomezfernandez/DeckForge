@@ -34,4 +34,8 @@ class CardDetails extends Model
     public function types() {
         return $this->belongsToMany(Type::class, 'card_details_types');
     }
+
+    public function mana_costs() {
+        return $this->hasMany(ManaCost::class);
+    }
 }

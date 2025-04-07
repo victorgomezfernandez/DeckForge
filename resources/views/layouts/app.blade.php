@@ -16,7 +16,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/sass/header.scss', 'resources/sass/login-register.scss', 'resources/sass/sets.scss',
+    @vite(['resources/sass/app.scss', 'resources/sass/header.scss', 'resources/sass/login-register.scss', 'resources/sass/sets.scss', 'resources/sass/cards.scss',
     'resources/js/app.js'])
 </head>
 
@@ -136,6 +136,7 @@
             </div>
         </div>
     </footer> --}}
+    @stack('scripts')
 </body>
 
 </html>

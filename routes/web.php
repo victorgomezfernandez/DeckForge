@@ -19,6 +19,7 @@ Route::get('sets', [CardsController::class, 'sets'])->name('sets');
 
 Route::get('/search-sets', [CardsController::class, 'searchSets'])->name('search-sets');
 Route::get('/search-cards', [CardsController::class, 'searchCards'])->name('search-cards');
+Route::get('/sets/{code}/cards', [CardsController::class, 'setCards'])->name('set-cards');
 
 Auth::routes();
 

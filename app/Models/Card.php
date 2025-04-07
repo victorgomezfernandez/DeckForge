@@ -47,7 +47,11 @@ class Card extends Model
         return $this->belongsToMany(Color::class, 'color_identities');
     }
 
-    // public function card_details() {
-    //     return $this->hasMany(CardDetails::class);
-    // }
+    public function card_details() {
+        return $this->hasMany(CardDetails::class);
+    }
+
+    public function legalities() {
+        return $this->hasMany(Legality::class);
+    }
 }
