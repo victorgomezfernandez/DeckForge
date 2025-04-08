@@ -97,6 +97,27 @@
     padding: 15px;
 }
 
+.pagination {
+    --bs-pagination-active-bg: #D82596;
+    --bs-pagination-active-border-color: #D82596;
+    --bs-pagination-color: white;
+    --bs-pagination-bg: #333333;
+    --bs-pagination-hover-color: white;
+    --bs-pagination-hover-bg: #D82596;
+    --bs-pagination-focus-color: white;
+    --bs-pagination-focus-bg: #D82596;
+    --bs-pagination-focus-box-shadow: 0;
+    --bs-pagination-border-radius: 15px;
+    --bs-pagination-disabled-bg: #a5a5a5;
+    margin-left: 10px;
+}
+
+.symbol-img {
+    vertical-align: middle;
+    height: 15px;
+    width: 15px;
+}
+
 @media (max-width: 1024px) {
     .custom-modal-size {
         width: 95vw;

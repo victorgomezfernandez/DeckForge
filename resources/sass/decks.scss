@@ -1,0 +1,36 @@
+.deck-card {
+    background-color: #333333;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.deck-text {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.deck-name {
+    font-size: 24px;
+}
+
+.deck-format {
+    font-size: 20px;
+}
+
+.deck-creator {
+    font-size: 14px;
+}
+
+.deck-colors {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.deck-color {
+    width: 30px;
+    height: 30px;
+}

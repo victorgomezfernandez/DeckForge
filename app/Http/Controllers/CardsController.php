@@ -40,7 +40,7 @@ class CardsController extends Controller
                 ELSE 999999
             END")
 
-            ->get();
+            ->paginate(60);
 
         return view('cards.cards', compact('cards', 'set'));
     }
@@ -52,7 +52,7 @@ class CardsController extends Controller
 
         $cards = Card::whereHas('card_details', function ($q) use ($query) {
             $q->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%']);
-        })->with(['card_details', 'set'])->get();
+        })->with(['card_details', 'set'])->paginate(60);
 
         return view('cards.cards', compact('cards'));
     }

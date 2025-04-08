@@ -32,6 +32,15 @@
     font-size: larger;
 }
 
+.navbar-nav.ms-auto {
+    display: flex;
+    align-items: center;
+}
+
+.add-deck-img {
+    transform: scale(80%);
+}
+
 .authenticated-link {
     display: flex;
     align-items: center;
@@ -45,4 +54,88 @@
     height: 30px;
     background-color: black;
     margin-right: 30px;
+}
+
+.create-deck-modal-header{
+    text-align: center;
+    font-weight: 700;
+    font-size: 23px;
+    border-bottom: none;
+}
+
+.create-deck-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+}
+
+.create-deck-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+
+.create-deck-form .form-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.create-deck-form .mb-3 {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.create-deck-modal-input {
+    background-color: #C8C8C8;
+    border-radius: 25px;
+    padding-left: 10px;
+    border: 0;
+}
+
+.create-deck-modal-input:focus {
+    background-color: #C8C8C8;
+    border: 0;
+    border-radius: 25px;
+    padding-left: 10px;
+}
+
+.create-deck-modal-submit {
+    font-size: 18px;
+    font-weight: 700;
+    background-color: #D82596;
+    border: 0;
+    --bs-btn-active-bg: #98196a;
+}
+
+.create-deck-modal-submit:hover {
+    background-color: #98196a;
+}
+
+.create-deck-modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.format-dropdown-menu {
+    right: 0;
+    top: 70% !important;
+}
+
+.format-dropdown {
+    background-color: #C8C8C8;
+}
+
+.format-dropdown:hover {
+    background-color: #C8C8C8;
+    border: 1px solid black;
+}
+
+.format-dropdown:focus {
+    background-color: #C8C8C8;
 }
