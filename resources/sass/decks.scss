@@ -1,21 +1,56 @@
 .deck-card {
-    background-color: #333333;
+    position: relative;
+    background-color: #333;
     padding: 10px;
     border-radius: 20px;
+    height: 200px;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.deck-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.6);
+}
+
+.deck-card:hover {
+    transform: scale(95%);
+}
+
+.deck-card-content {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
 }
 
 .deck-text {
     display: flex;
     flex-direction: column;
     color: white;
+    
 }
 
 .deck-name {
-    font-size: 24px;
+    font-size: 22px;
+    font-weight: 900;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .deck-format {
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .deck-creator {
@@ -23,11 +58,14 @@
 }
 
 .deck-colors {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
     justify-content: center;
+    gap: 10px;
+    z-index: 2;
 }
 
 .deck-color {
