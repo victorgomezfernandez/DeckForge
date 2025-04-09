@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Card;
 use App\Models\Deck;
 use App\Models\Format;
 use Illuminate\Http\Request;
@@ -35,5 +36,10 @@ class DecksController extends Controller
         $user_id = Auth::id();
         $decks = Deck::where('user_id', $user_id)->get();
         return view('decks.yourdecks', compact('decks'));
+    }
+
+    public function deckDetails($id) {
+        $deck = Deck::find($id);
+        return view('decks.deckdetails', compact('deck'));
     }
 }

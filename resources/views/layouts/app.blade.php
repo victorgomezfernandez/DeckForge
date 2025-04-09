@@ -18,7 +18,8 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/sass/header.scss', 'resources/sass/login-register.scss', 
     'resources/sass/sets.scss', 'resources/sass/cards.scss', 'resources/js/app.js', 'resources/js/format-dropdown-choose.js', 
-    'resources/js/create-deck-form-validation.js', 'resources/sass/decks.scss'])
+    'resources/js/create-deck-form-validation.js', 'resources/sass/decks.scss', 'resources/sass/deckdetails.scss', 
+    'resources/js/live-card-search.js'])
 </head>
 
 <body style="background-color: #E0E0E0; min-height: 100vh; display: flex; flex-direction: column;">

@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('card_deck_colors', function (Blueprint $table) {
-            $table->foreignId('card_id')->nullable()->constrained('cards')->onDelete('cascade');
+        Schema::create('deck_colors', function (Blueprint $table) {
             $table->foreignId('deck_id')->nullable()->constrained('decks')->onDelete('cascade');
             $table->foreignId('color_id')->constrained('colors');
         });
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('card_deck_colors');
+        Schema::dropIfExists('deck_colors');
     }
 };

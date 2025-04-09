@@ -1,0 +1,91 @@
+.deck-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.deck-details-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.deck-details-name {
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.deck-details-colors {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.deck-details-colors img {
+    width: 40px;
+    height: 40px;
+}
+
+.deck-details-tag {
+    background-color: #D82596;
+    color: white;
+    padding: 3px 8px 3px 8px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.deck-details-description {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.live-search-input {
+    width: 70%;
+    background-color: #c0c0c0;
+    border-radius: 45px;
+}
+
+.live-search-input:focus {
+    background-color: #a9a9a9;
+    outline: none;
+    box-shadow: none;
+}
+
+.live-search-results {
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+}
+
+.live-search-card {
+    cursor: pointer;
+}
+
+.live-search-card:hover {
+    background-color: #a9a9a9;
+}
+
+.deck-details-card {
+    border-top: 1px solid black;
+    cursor: pointer;
+}
+
+.deck-details-card-name {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.deck-details-card-costs {
+    display: flex;
+    gap: 10px;
+}
+
+.deck-details-card-costs img {
+    width: 20px;
+    height: 20px;
+}

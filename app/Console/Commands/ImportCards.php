@@ -39,7 +39,7 @@ class ImportCards extends Command
     {
         //$url = "https://api.scryfall.com/cards/search?q=(set:lea OR set:leb OR set:3ed OR set:4ed OR set:5ed OR set:6ed OR set:7ed OR set:8ed) lang:en unique:prints";
         //$url = "https://api.scryfall.com/cards/search?q=(set:lea OR set:leb OR set:3ed) lang:en unique:prints";
-        $url = "https://api.scryfall.com/cards/search?q=Acornelia";
+        $url = "https://api.scryfall.com/cards/search?q=Heliod's Emissary";
         $response = Http::get($url);
 
         if ($response->failed()) {

@@ -34,10 +34,10 @@ class Deck extends Model
     }
 
     public function cards() {
-        return $this->hasMany(Card::class, 'cards_deck');
+        return $this->belongsToMany(Card::class, 'cards_deck');
     }
 
     public function colors() {
-        return $this->belongsToMany(Color::class, 'card_deck_colors');
+        return $this->belongsToMany(Color::class, 'deck_colors');
     }
 }

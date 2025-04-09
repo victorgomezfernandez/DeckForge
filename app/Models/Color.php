@@ -20,11 +20,11 @@ class Color extends Model
     ];
 
     public function cards() {
-        return $this->belongsToMany(Card::class, 'card_deck_colors');
+        return $this->belongsToMany(Card::class, 'card_colors');
     }
 
     public function decks() {
-        return $this->belongsToMany(Deck::class, 'card_deck_colors');
+        return $this->belongsToMany(Deck::class, 'deck_colors');
     }
 
     public function color_identities() {
