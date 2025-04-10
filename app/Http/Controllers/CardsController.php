@@ -82,8 +82,8 @@ class CardsController extends Controller
             'card' => 'required|array',
         ]);
 
-        $deck = Deck::find($validated['deck_id']);
-
+        $deck = Deck::with('colors')->find($validated['deck_id']);
+        
         if (!$deck) {
             return response()->json(['error' => 'Deck not found.'], 404);
         }
@@ -92,6 +92,15 @@ class CardsController extends Controller
 
         if (!$card) {
             return response()->json(['error' => 'Card not found.'], 404);
+        }
+
+        $cardColorIds = $card->colors->pluck('id')->toArray();
+        $deckColorIds = $deck->colors->pluck('id')->toArray();
+
+        $newColorIds = array_diff($cardColorIds, $deckColorIds);
+
+        if (!empty($newColorIds)) {
+            $deck->colors()->attach($newColorIds);
         }
 
         $deck->cards()->attach($card);

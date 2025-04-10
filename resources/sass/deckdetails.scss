@@ -83,9 +83,24 @@
 .deck-details-card-costs {
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
 .deck-details-card-costs img {
     width: 20px;
     height: 20px;
+}
+
+#selected-card-info {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 90%;
+}
+
+.selected-card-img {
+    border-radius: 15px;
+    width: 80%;
 }

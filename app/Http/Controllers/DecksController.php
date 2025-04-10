@@ -28,18 +28,68 @@ class DecksController extends Controller
         return redirect()->route('your-decks')->with('success', 'Deck created successfully!');
     }
 
-    public function decks() {
-        return view('decks.decks');
+    public function decks()
+    {
+        $decks = Deck::with('user')->get();
+        return view('decks.decks', compact('decks'));
     }
 
-    public function yourDecks() {
+    public function yourDecks()
+    {
         $user_id = Auth::id();
-        $decks = Deck::where('user_id', $user_id)->get();
+        $decks = Deck::where('user_id', $user_id)->orderByDesc('created_at')->get();
         return view('decks.yourdecks', compact('decks'));
     }
 
-    public function deckDetails($id) {
+    public function deckDetails($id)
+    {
         $deck = Deck::find($id);
         return view('decks.deckdetails', compact('deck'));
+    }
+
+    public function getDeckCards($id)
+    {
+        $deck = Deck::with(['cards.card_details.types', 'cards.card_details.mana_costs.color', 'format'])->findOrFail($id);
+        return view('components.deck-details-cards', compact('deck'))->render();
+    }
+
+    public function publicDecks()
+    {
+        $decks = Deck::where('public', TRUE)->orderByDesc('created_at')->get();
+        return view('decks.decks', compact('decks'));
+    }
+
+    public function searchDecks(Request $request)
+    {
+        $query = $request->input('query');
+        $decks = Deck::whereHas('name', function ($q) use ($query) {
+            $q->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%']);
+        })->paginate(20);
+        return view('decks.decks', compact('decks'));
+    }
+
+    public function updateDeckThumbnail(Request $request, Deck $deck)
+    {
+        $request->validate([
+            'art_crop' => 'required|url'
+        ]);
+
+        $deck->update([
+            'img' => $request->art_crop,
+        ]);
+
+        return response()->json(['success' => true]);
+    }
+
+    public function removeCardFromDeck(Request $request, Deck $deck, $cardId)
+    {
+        $card = $deck->cards()->where('card_id', $cardId)->first();
+        
+        if ($card) {
+            $deck->cards()->detach($card);
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Carta no encontrada']);
     }
 }
