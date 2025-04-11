@@ -18,7 +18,7 @@ Route::post('/decks', [DecksController::class, 'store'])->name('decks.store')->m
 Route::get('/decks/deck-details/{id}', [DecksController::class, 'deckDetails'])->name('deck-details');
 Route::post('/decks/deck-details/{id}/add-card', [CardsController::class, 'addCardToDeck']);
 Route::put('/decks/{deck}/update-thumbnail', [DecksController::class, 'updateDeckThumbnail']);
-Route::delete('/decks/{deck}/remove-card/{cardId}', [DecksController::class, 'removeCardFromDeck']);
+Route::delete('/decks/{deck}/remove-card/{cardDeckId}', [DecksController::class, 'removeCardFromDeck']);
 Route::get('/decks/deck-details/{id}/cards-html', [DecksController::class, 'getDeckCards']);
 Route::get('/your-decks', [DecksController::class, 'yourDecks'])->name('your-decks');
 

@@ -53,13 +53,14 @@
                                 <span class="deck-details-card-name">
                                     {{ $quantity }} {{ Str::limit($card->card_details[0]->name, 1000, '...') }}
                                 </span>
-                                <input type="text" style="display: none;" class="deck-details-card-id"
-                                    value={{ $card->id }}>
-                                <input type="text" style="display: none;" class="deck-details-deck-id"
-                                    value={{ $deck->id }}>
+                                <input type="hidden" class="deck-details-card-id" value={{ $card->id }}>
+                                <input type="hidden" class="deck-details-relation-id" value={{ $card->pivot->id }}>
+                                <input type="hidden" class="deck-details-deck-id" value={{ $deck->id }}>
                                 <div class="deck-details-card-costs d-flex">
                                     @if ($isCreator)
-                                        <i class="fa-solid fa-x" style="color: #D82596"></i>
+                                        <button class="btn" class="delete-card-button">
+                                            <i class="fa-solid fa-x" style="color: #D82596"></i>
+                                        </button>
                                     @endif
                                     @foreach ($card->card_details as $detail)
                                         @foreach ($detail->mana_costs as $mana_cost)

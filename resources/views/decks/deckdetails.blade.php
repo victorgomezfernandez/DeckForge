@@ -2,11 +2,13 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="deck-details col-lg-6">
+            <div class="deck-details col-lg-8">
                 <div class="deck-details-header">
-                    <span class="deck-details-name">
-                        {{ $deck->name }}
-                    </span>
+                    @if (auth()->check() && auth()->user()->id === $deck->user_id)
+                        <input type="text" class="deck-details-name deck-details-input" value="{{ $deck->name }}">
+                    @else
+                        <span class="deck-details-name">{{ $deck->name }}</span>
+                    @endif
                     <div class="deck-details-colors">
                         @foreach ($deck->colors as $color)
                             <img src="{{ asset("images/costs/{$color->code}.svg") }}">
@@ -22,11 +24,16 @@
                         </span>
                     </div>
                 </div>
-                <span class="deck-details-description">{{ $deck->description }}</span>
+                @if (auth()->check() && auth()->user()->id === $deck->user_id)
+                    <input type="text" value="{{ $deck->description }}"
+                        class="deck-details-description deck-details-input">
+                @else
+                    <span class="deck-details-description">{{ $deck->description }}</span>
+                @endif
                 <span class="deck-details-description">By {{ $deck->user->name }}</span>
             </div>
             @if (auth()->check() && auth()->user()->id === $deck->user_id)
-                <div class="col-lg-6 d-flex flex-column align-items-end">
+                <div class="col-lg-4 d-flex flex-column align-items-end">
                     <div class="d-flex align-items-center justify-content-end gap-2 mb-2"
                         style="width: 100%; max-width: 300px;">
                         <label for="card-live-search" class="mb-0"><b>Add Cards</b></label>
@@ -45,5 +52,6 @@
         </div>
         <input type="hidden" id="deck-id" value="{{ $deck->id }}">
         <input type="hidden" id="user-id" value="{{ auth()->check() ? auth()->user()->id : '' }}">
-        <input type="hidden" id="creator-id" value="{{ auth()->check() && auth()->user()->id === $deck->user_id ? $deck->user->id : '' }}">
+        <input type="hidden" id="creator-id"
+            value="{{ auth()->check() && auth()->user()->id === $deck->user_id ? $deck->user->id : '' }}">
     @endsection

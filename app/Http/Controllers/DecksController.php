@@ -7,6 +7,7 @@ use App\Models\Deck;
 use App\Models\Format;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DecksController extends Controller
 {
@@ -81,15 +82,14 @@ class DecksController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function removeCardFromDeck(Request $request, Deck $deck, $cardId)
+    public function removeCardFromDeck(Request $request, Deck $deck, $cardDeckId)
     {
-        $card = $deck->cards()->where('card_id', $cardId)->first();
-        
-        if ($card) {
-            $deck->cards()->detach($card);
+        $deleted = DB::table('cards_deck')->where('id', $cardDeckId)->delete();
+
+        if ($deleted) {
             return response()->json(['success' => true]);
         }
 
-        return response()->json(['success' => false, 'message' => 'Carta no encontrada']);
+        return response()->json(['success' => false, 'message' => 'No se encontró la carta']);
     }
 }

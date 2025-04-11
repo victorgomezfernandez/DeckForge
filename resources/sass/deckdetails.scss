@@ -3,6 +3,18 @@
     flex-direction: column;
 }
 
+.deck-details-input {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.deck-details-input:focus {
+    border: 1px solid #D82596;
+    border-radius: 10px;
+    background-color: #c0c0c0;
+}
+
 .deck-details-header {
     display: flex;
     flex-direction: row;
@@ -13,6 +25,7 @@
 .deck-details-name {
     font-size: 40px;
     font-weight: 900;
+    width: 40%;
 }
 
 .deck-details-colors {
@@ -38,6 +51,7 @@
 .deck-details-description {
     font-size: 20px;
     font-weight: 700;
+    width: 45%;
 }
 
 .live-search-input {

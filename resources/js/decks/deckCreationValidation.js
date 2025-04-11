@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+export function deckCreationValidation() {
     const form = document.querySelector('.create-deck-form');
     const nameInput = document.getElementById('deck-name');
     const formatInput = document.getElementById('selectedFormat');
@@ -31,4 +31,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-});
+}

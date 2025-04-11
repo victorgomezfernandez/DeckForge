@@ -10,7 +10,7 @@ class Deck extends Model
     use HasFactory;
 
     protected $table = 'decks';
-    
+
     protected $primaryKey = 'id';
     public $incrementing = true;
 
@@ -25,19 +25,24 @@ class Deck extends Model
 
     public $timestamps = true;
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function format() {
+    public function format()
+    {
         return $this->belongsTo(Format::class);
     }
 
-    public function cards() {
-        return $this->belongsToMany(Card::class, 'cards_deck');
+    public function cards()
+    {
+        return $this->belongsToMany(Card::class, 'cards_deck')
+                ->withPivot('id');
     }
 
-    public function colors() {
+    public function colors()
+    {
         return $this->belongsToMany(Color::class, 'deck_colors');
     }
 }
