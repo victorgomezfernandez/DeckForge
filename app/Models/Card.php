@@ -25,7 +25,6 @@ class Card extends Model
         'set_id'
     ];
 
-    public $timestamps = false;
 
     public function set() {
         return $this->belongsTo(Set::class);

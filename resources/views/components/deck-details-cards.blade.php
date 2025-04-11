@@ -27,7 +27,7 @@
                 @endphp
 
                 @if ($cardsByType->isNotEmpty())
-                    <div class="col-md-6 col-lg-3 mb-4" id="section-{{ strtolower($type) }}">
+                    <div class="col-md-6 col-lg-4 mb-4" id="section-{{ strtolower($type) }}">
                         @php
                             $totalCount = $cardsByType->count();
                         @endphp

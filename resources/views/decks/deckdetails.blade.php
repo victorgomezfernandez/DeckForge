@@ -23,10 +23,15 @@
                             {{ count($deck->cards) }}
                         </span>
                     </div>
+                    @if (auth()->check() && auth()->user()->id === $deck->user_id)
+                    <button class="btn btn-danger" id="deck-delete">
+                        <span>Delete Deck</span>
+                    </button>
+                    @endif
                 </div>
                 @if (auth()->check() && auth()->user()->id === $deck->user_id)
                     <input type="text" value="{{ $deck->description }}"
-                        class="deck-details-description deck-details-input">
+                        class="deck-details-description deck-details-input" placeholder="Deck description">
                 @else
                     <span class="deck-details-description">{{ $deck->description }}</span>
                 @endif

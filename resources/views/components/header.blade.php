@@ -17,7 +17,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('decks') ? 'active' : 'underline' }}"
+                    <a class="nav-link {{ request()->is('decks*') ? 'active' : 'underline' }}"
                         href="{{ route('decks') }}">
                         {{ __('Decks') }}
                     </a>

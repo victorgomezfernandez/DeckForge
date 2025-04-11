@@ -60,15 +60,6 @@ class DecksController extends Controller
         return view('decks.decks', compact('decks'));
     }
 
-    public function searchDecks(Request $request)
-    {
-        $query = $request->input('query');
-        $decks = Deck::whereHas('name', function ($q) use ($query) {
-            $q->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%']);
-        })->paginate(20);
-        return view('decks.decks', compact('decks'));
-    }
-
     public function updateDeckThumbnail(Request $request, Deck $deck)
     {
         $request->validate([
@@ -91,5 +82,45 @@ class DecksController extends Controller
         }
 
         return response()->json(['success' => false, 'message' => 'No se encontró la carta']);
+    }
+
+    public function updateField(Request $request, Deck $deck)
+    {
+
+        $validated = $request->validate([
+            'field' => 'required|string|in:name,description',
+            'value' => 'required|string|max:255',
+        ]);
+
+        $deck->{$validated['field']} = $validated['value'];
+        $deck->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function searchDecks(Request $request)
+    {
+        $query = $request->input('query');
+
+        $decks = Deck::where('public', true)
+            ->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%'])
+            ->get();
+
+        return view('decks.decks', compact('decks'));
+    }
+
+    public function recentContent()
+    {
+        $decks = Deck::where('public', true)->latest()->take(6)->get();
+        $cards = Card::latest()->take(6)->get();
+
+        return view('home', compact('decks', 'cards'));
+    }
+
+    public function destroy(Deck $deck)
+    {
+        $deck->delete();
+
+        return response()->json(['success' => true]);
     }
 }
