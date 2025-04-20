@@ -5,7 +5,7 @@
            <button class="btn search-button" type="submit">
                <img src="{{ asset('images/search.svg') }}" alt="search" />
            </button>
-           @if (request()->is('decks*'))
+           @if (request()->is('decks*') || request()->is('your-decks*'))
                <input type="hidden" name="type" id="selectedType" value="Decks" />
            @else
                <button class="btn dropdown-toggle search-dropdown m-3" type="button" id="dropdownMenu"

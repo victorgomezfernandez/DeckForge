@@ -24,7 +24,8 @@ Route::put('/decks/{deck}/update-field', [DecksController::class, 'updateField']
 Route::delete('/decks/{deck}', [DecksController::class, 'destroy'])->middleware('auth');
 Route::delete('/decks/{deck}/remove-card/{cardDeckId}', [DecksController::class, 'removeCardFromDeck']);
 Route::get('/decks/deck-details/{id}/cards-html', [DecksController::class, 'getDeckCards']);
-Route::get('/your-decks', [DecksController::class, 'yourDecks'])->name('your-decks');
+Route::get('/your-decks', [DecksController::class, 'yourDecks'])->name('your-decks')->middleware('auth');
+Route::get('/your-decks/search-decks', [DecksController::class, 'searchYourDecks'])->name('your-decks.search')->middleware('auth');
 Route::get('/decks/search-decks', [DecksController::class, 'searchDecks'])->name('search-decks');
 
 Route::get('/cards/sets', [CardsController::class, 'sets'])->name('sets');

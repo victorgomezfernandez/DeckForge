@@ -113,8 +113,27 @@ class DecksController extends Controller
     {
         $decks = Deck::where('public', true)->latest()->take(6)->get();
         $cards = Card::latest()->take(6)->get();
+        $userDecks = null;
+        if (Auth::check()) {
+            $userDecks = Deck::where('user_id', Auth::id())->latest()->take(6)->get();
+            if ($userDecks->isEmpty()) {
+                $userDecks = null;
+            }
+        }
 
-        return view('home', compact('decks', 'cards'));
+        return view('home', compact('decks', 'cards', 'userDecks'));
+    }
+
+    public function searchYourDecks(Request $request)
+    {
+        $query = $request->input('query');
+        $user_id = Auth::id();
+
+        $decks = Deck::where('user_id', $user_id)
+            ->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%'])
+            ->get();
+
+        return view('decks.yourdecks', compact('decks'));
     }
 
     public function destroy(Deck $deck)

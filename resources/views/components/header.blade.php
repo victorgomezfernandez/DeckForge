@@ -31,7 +31,7 @@
                 @auth
                     <li>
                         <span class="authenticated-link"><a
-                                class="nav-link {{ request()->is('your-decks') ? 'active' : 'underline' }}"
+                                class="nav-link {{ request()->is('your-decks*') ? 'active' : 'underline' }}"
                                 href="{{ route('your-decks') }}">
                                 {{ __('Your decks') }}
                             </a></span>
