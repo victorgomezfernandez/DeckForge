@@ -36,6 +36,8 @@ class ImportScryfallData extends Command
 
         $this->call('app:import-cards');
 
+        $this->call(\Database\Seeders\DeckSeeder::class);
+
         $this->info('Import finished');
     }
 }

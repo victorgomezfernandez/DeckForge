@@ -38,7 +38,7 @@ class DecksController extends Controller
     public function yourDecks()
     {
         $user_id = Auth::id();
-        $decks = Deck::where('user_id', $user_id)->orderByDesc('created_at')->get();
+        $decks = Deck::where('user_id', $user_id)->orderByDesc('created_at')->paginate(24);
         return view('decks.yourdecks', compact('decks'));
     }
 
@@ -56,7 +56,7 @@ class DecksController extends Controller
 
     public function publicDecks()
     {
-        $decks = Deck::where('public', TRUE)->orderByDesc('created_at')->get();
+        $decks = Deck::where('public', TRUE)->orderByDesc('created_at')->paginate(24);
         return view('decks.decks', compact('decks'));
     }
 
@@ -104,7 +104,7 @@ class DecksController extends Controller
 
         $decks = Deck::where('public', true)
             ->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%'])
-            ->get();
+            ->paginate(24);
 
         return view('decks.decks', compact('decks'));
     }
@@ -131,7 +131,8 @@ class DecksController extends Controller
 
         $decks = Deck::where('user_id', $user_id)
             ->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%'])
-            ->get();
+            ->orderByDesc('created_at')
+            ->paginate(24);
 
         return view('decks.yourdecks', compact('decks'));
     }
