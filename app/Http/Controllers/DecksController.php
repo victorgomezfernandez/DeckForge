@@ -98,16 +98,16 @@ class DecksController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function searchDecks(Request $request)
-    {
-        $query = $request->input('query');
+    // public function searchDecks(Request $request)
+    // {
+    //     $query = $request->input('query');
 
-        $decks = Deck::where('public', true)
-            ->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%'])
-            ->paginate(24);
+    //     $decks = Deck::where('public', true)
+    //         ->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%'])
+    //         ->paginate(24);
 
-        return view('decks.decks', compact('decks'));
-    }
+    //     return view('decks.decks', compact('decks'));
+    // }
 
     public function recentContent()
     {
@@ -136,6 +136,44 @@ class DecksController extends Controller
 
         return view('decks.yourdecks', compact('decks'));
     }
+
+    public function filterDecks(Request $request)
+    {
+        $query = Deck::query();
+
+        if ($request->filled('query')) {
+            $query->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($request->query('query')) . '%']);
+        }
+
+        if ($request->filled('deck_name')) {
+            $query->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($request->deck_name) . '%']);
+        }
+
+        if ($request->filled('deck_format')) {
+            $query->where('format', $request->deck_format);
+        }
+
+        if ($request->filled('deck_creator')) {
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($request->deck_creator) . '%']);
+            });
+        }
+
+        if ($request->filled('colors')) {
+            $colors = $request->input('colors');
+            
+            foreach ($colors as $color) {
+                $query->whereHas('colors', function ($q) use ($color) {
+                    $q->whereRaw('LOWER(name) = ?', [strtolower($color)]);
+                });
+            }
+        }        
+
+        $decks = $query->with(['user', 'format'])->paginate(24);
+
+        return view('decks.decks', compact('decks'));
+    }
+
 
     public function destroy(Deck $deck)
     {

@@ -41,33 +41,3 @@
     color: #f2f2f2;
 }
 
-.search-input {
-    background-color: #C8C8C8;
-    border-radius: 45px 0 0 45px;
-    height: 40px;
-}
-
-.search-input:focus {
-    background-color: #a9a9a9;
-    outline: none;
-    box-shadow: none;
-}
-
-.search-button {
-    background-color: #D82596;
-    border-radius: 0 20px 20px 0;
-    height: 38px;
-    padding: 0 10px;
-}
-
-.search-button:hover {
-    background-color: #ba2584;
-}
-
-.search-dropdown {
-    background-color: #C8C8C8;
-}
-
-.search-dropdown:hover {
-    background-color: #a9a9a9;
-}
