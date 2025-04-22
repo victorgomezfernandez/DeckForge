@@ -15,17 +15,17 @@
                         @endforeach
                     </div>
                     <div class="deck-details-tag">
-                        <span>Format: {{ Str::ucfirst($deck->format->name) }}</span>
+                        <span>{{ __('decks.format') }}: {{ Str::ucfirst($deck->format->name) }}</span>
                     </div>
                     <div class="deck-details-tag">
-                        <span>Card count: </span>
+                        <span>{{ __('decks.card_count') }}</span>
                         <span id="deck-details-count">
                             {{ count($deck->cards) }}
                         </span>
                     </div>
                     @if (auth()->check() && auth()->user()->id === $deck->user_id)
                     <button class="btn btn-danger" id="deck-delete">
-                        <span>Delete Deck</span>
+                        <span>{{ __('decks.delete_deck') }}</span>
                     </button>
                     @endif
                 </div>
@@ -35,13 +35,13 @@
                 @else
                     <span class="deck-details-description">{{ $deck->description }}</span>
                 @endif
-                <span class="deck-details-description">By {{ $deck->user->name }}</span>
+                <span class="deck-details-description">{{ __('decks.by') }}{{ $deck->user->name }}</span>
             </div>
             @if (auth()->check() && auth()->user()->id === $deck->user_id)
                 <div class="col-lg-4 d-flex flex-column align-items-end">
                     <div class="d-flex align-items-center justify-content-end gap-2 mb-2"
                         style="width: 100%; max-width: 300px;">
-                        <label for="card-live-search" class="mb-0"><b>Add Cards</b></label>
+                        <label for="card-live-search" class="mb-0 live-search-label"><b>{{ __('decks.add_cards') }}</b></label>
                         <input type="search" id="card-live-search" class="form-control live-search-input" />
                     </div>
 

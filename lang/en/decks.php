@@ -1,0 +1,22 @@
+<?php
+return [
+    'create_new_deck' => 'CREATE NEW DECK',
+    'name' => 'Name',
+    'description' => 'Description',
+    'set_as_public' => 'Set as public',
+    'create' => 'CREATE',
+    'explore_decks' => 'EXPLORE DECKS',
+    'your_decks' => 'YOUR DECKS',
+    'advanced_filters' => 'Advanced Filters',
+    'deck_name' => 'Deck Name',
+    'format' => 'Format',
+    'any' => 'Any',
+    'creator' => 'Creator',
+    'colors' => 'Colors',
+    'reset_filters' => 'Reset Filters',
+    'search' => 'Search',
+    'card_count' => 'Card count: ',
+    'delete_deck' => 'Delete deck',
+    'by' => 'By ',
+    'add_cards' => 'Add cards',
+];

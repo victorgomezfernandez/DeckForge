@@ -13,19 +13,19 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('home') ? 'active' : 'underline' }}" href="{{ route('home') }}">
-                        {{ __('Home') }}
+                        {{ __('header.home') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('decks*') ? 'active' : 'underline' }}"
                         href="{{ route('decks') }}">
-                        {{ __('Decks') }}
+                        {{ __('header.decks') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('cards*') ? 'active' : 'underline' }}"
                         href="{{ route('sets') }}">
-                        {{ __('Cards') }}
+                        {{ __('header.cards') }}
                     </a>
                 </li>
                 @auth
@@ -33,7 +33,7 @@
                         <span class="authenticated-link"><a
                                 class="nav-link {{ request()->is('your-decks*') ? 'active' : 'underline' }}"
                                 href="{{ route('your-decks') }}">
-                                {{ __('Your decks') }}
+                                {{ __('header.your_decks') }}
                             </a></span>
                     </li>
                 @endauth
@@ -48,7 +48,7 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('login') ? 'active' : 'underline' }}"
                                 href="{{ route('login') }}">
-                                {{ __('Login') }}
+                                {{ __('header.login') }}
                             </a>
                         </li>
                     @endif
@@ -57,7 +57,7 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('register') ? 'active' : 'underline' }}"
                                 href="{{ route('register') }}">
-                                {{ __('Register') }}
+                                {{ __('header.register') }}
                             </a>
                         </li>
                     @endif
@@ -72,7 +72,7 @@
                         <a class="nav-link {{ request()->is('logout') ? 'active' : 'underline' }}"
                             href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            {{ __('header.logout') }}
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

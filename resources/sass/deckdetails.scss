@@ -47,6 +47,7 @@
     font-size: 20px;
     font-weight: 900;
     text-align: center;
+    white-space: nowrap;
 }
 
 #deck-delete {
@@ -55,12 +56,17 @@
     border-radius: 10px;
     font-size: 20px;
     font-weight: 900;
+    white-space: nowrap;
 }
 
 .deck-details-description {
     font-size: 20px;
     font-weight: 700;
     width: 45%;
+}
+
+.live-search-label {
+    white-space: nowrap;
 }
 
 .live-search-input {

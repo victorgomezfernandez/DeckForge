@@ -85,3 +85,10 @@
     </div>
 
 </div>
+
+<script>
+    window.translations = {
+        viewDetails: @json(__('decks.view_details')),
+        setAsThumbnail: @json(__('decks.set_as_thumbnail')),
+    };
+</script>

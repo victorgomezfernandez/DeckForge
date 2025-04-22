@@ -31,9 +31,8 @@
             <div class="row" style="text-align: center;">
                 {{-- <p>Magic: The Gathering and Wizards of the Coast are trademarks of Wizards of the Coast LLC. © 1993-2025
                     Wizards. All Rights Reserved </p> --}}
-                <p>deckforge is not related with Wizards of the Coast LLC. deckforge may use the intellectual property
-                    of Wizards of the Coast LLC, as permitted under Wizards' Fan Site Policy</p>
-                <p>All the data for cards information is provided by <a href="https://www.scryfall.com">Scryfall</a>
+                <p>{{ __('footer.policy') }}</p>
+                <p>{{ __('footer.scryfall') }}<a href="https://www.scryfall.com">Scryfall</a>
                 </p>
             </div>
             <div class="row">

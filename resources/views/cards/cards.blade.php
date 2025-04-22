@@ -10,11 +10,11 @@
                 <img src="{{ $set->symbol }}" alt="{{ $set->code }}" style="width: 45px; height: 45px;" />
                 <div>
                     <h4 class="mb-0"><b>{{ $set->name }}</b></h4>
-                    <small class="text-muted">{{ strtoupper($set->code) }} - {{ $cards->total() }} cards</small>
+                    <small class="text-muted">{{ strtoupper($set->code) }} - {{ $cards->total() }} {{ __('cards.cards') }}</small>
                 </div>
             </div>
         @else
-            <h3 class="mb-3"><b>EXPLORE CARDS</b></h3>
+            <h3 class="mb-3"><b>{{ __('cards.explore_cards') }}</b></h3>
         @endisset
 
         <div class="row g-4">

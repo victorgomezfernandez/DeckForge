@@ -2,29 +2,29 @@
     <div class="modal-dialog">
         <div class="modal-content advanced-filters-modal">
             <div class="modal-header">
-                <h4 class="modal-title">Advanced Filters</h4>
+                <h4 class="modal-title">{{ __('decks.advanced_filters') }}</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" id="filtersClose"></button>
             </div>
 
             <div class="modal-body">
                 <div class="modal-field">
-                    <label for="deck_name" class="modal-form-label">Deck Name</label>
+                    <label for="deck_name" class="modal-form-label">{{ __('decks.deck_name') }}</label>
                     <input type="text" class="modal-input form-control" name="deck_name">
                 </div>
                 <div class="modal-field">
-                    <label for="deck_format" class="modal-form-label">Format</label>
+                    <label for="deck_format" class="modal-form-label">{{ __('decks.format') }}</label>
                     <select class="modal-input form-select" name="deck_format">
-                        <option value="">Any</option>
+                        <option value="">{{ __('decks.any') }}</option>
                         <option value="Standard">Standard</option>
                         <option value="Vintage">Vintage</option>
                     </select>
                 </div>
                 <div class="modal-field">
-                    <label for="deck_creator" class="modal-form-label">Creator</label>
+                    <label for="deck_creator" class="modal-form-label">{{ __('decks.creator') }}</label>
                     <input type="text" class="modal-input form-control" name="deck_creator">
                 </div>
                 <div class="modal-field">
-                    <label for="deck_colors" class="modal-form-label">Colors</label>
+                    <label for="deck_colors" class="modal-form-label">{{ __('decks.colors') }}</label>
                     <div class="form-colors">
                         <label class="form-check-label"><img src="{{ asset('images/costs/W.svg') }}"
                                 class="form-color-img"></label>
@@ -50,9 +50,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="resetDeckFilters" type="button" class="btn modal-reset">Reset
-                    Filters</button>
-                <button type="submit" class="btn modal-search" data-bs-dismiss="modal">Search</button>
+                <button id="resetDeckFilters" type="button" class="btn modal-reset">{{ __('decks.reset_filters') }}</button>
+                <button type="submit" class="btn modal-search" data-bs-dismiss="modal">{{ __('decks.search') }}</button>
             </div>
         </div>
     </div>
