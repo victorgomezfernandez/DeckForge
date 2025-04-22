@@ -1,4 +1,3 @@
-@props(['sets' => collect()])
 <div class="modal fade" id="advancedFilters" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content advanced-filters-modal">
@@ -9,62 +8,49 @@
 
             <div class="modal-body">
                 <div class="modal-field">
-                    <label for="card_name" class="modal-form-label">Name</label>
-                    <input type="text" class="modal-input form-control" name="card_name">
+                    <label for="deck_name" class="modal-form-label">Deck Name</label>
+                    <input type="text" class="modal-input form-control" name="deck_name">
                 </div>
                 <div class="modal-field">
-                    <label for="card_types" class="modal-form-label">Types</label>
-                    <input type="text" class="modal-input form-control" name="card_types">
-                </div>
-                <div class="modal-field">
-                    <label for="card_power" class="modal-form-label">Power</label>
-                    <input type="number" class="modal-input form-control" name="card_power">
-                </div>
-                <div class="modal-field">
-                    <label for="card_toughness" class="modal-form-label">Toughness</label>
-                    <input type="number" class="modal-input form-control" name="card_toughness">
-                </div>
-                <div class="modal-field">
-                    <label for="card_value" class="modal-form-label">Mana Value</label>
-                    <input type="number" class="modal-input form-control" name="card_value">
-                </div>
-                <div class="modal-field">
-                    <label for="card_set" class="modal-form-label">Set</label>
-                    <select class="modal-input form-select" name="card_set">
+                    <label for="deck_format" class="modal-form-label">Format</label>
+                    <select class="modal-input form-select" name="deck_format">
                         <option value="">Any</option>
-                        @foreach($sets as $set)
-                        <option value={{ $set->code }}>{{ $set->name }} - {{ strtoupper($set->code) }}</option>
-                        @endforeach
+                        <option value="Standard">Standard</option>
+                        <option value="Vintage">Vintage</option>
                     </select>
+                </div>
+                <div class="modal-field">
+                    <label for="deck_creator" class="modal-form-label">Creator</label>
+                    <input type="text" class="modal-input form-control" name="deck_creator">
                 </div>
                 <div class="modal-field">
                     <label for="deck_colors" class="modal-form-label">Colors</label>
                     <div class="form-colors">
-                        <input class="form-check-input modal-form-checkbox" type="checkbox" id="whiteCheck"
-                            name="colors[]" value="W">
                         <label class="form-check-label"><img src="{{ asset('images/costs/W.svg') }}"
                                 class="form-color-img"></label>
+                        <input class="form-check-input modal-form-checkbox" type="checkbox" id="whiteCheck"
+                            name="colors[]" value="W">
+                            <label class="form-check-label"><img src="{{ asset('images/costs/U.svg') }}"
+                                    class="form-color-img"></label>
                         <input class="form-check-input modal-form-checkbox" type="checkbox" id="blueCheck"
                             name="colors[]" value="U">
-                        <label class="form-check-label"><img src="{{ asset('images/costs/U.svg') }}"
-                                class="form-color-img"></label>
+                            <label class="form-check-label"><img src="{{ asset('images/costs/B.svg') }}"
+                                    class="form-color-img"></label>
                         <input class="form-check-input modal-form-checkbox" type="checkbox" id="blackCheck"
                             name="colors[]" value="B">
-                        <label class="form-check-label"><img src="{{ asset('images/costs/B.svg') }}"
-                                class="form-color-img"></label>
+                            <label class="form-check-label"><img src="{{ asset('images/costs/R.svg') }}"
+                                    class="form-color-img"></label>
                         <input class="form-check-input modal-form-checkbox" type="checkbox" id="redCheck"
                             name="colors[]" value="R">
-                        <label class="form-check-label"><img src="{{ asset('images/costs/R.svg') }}"
-                                class="form-color-img"></label>
+                            <label class="form-check-label"><img src="{{ asset('images/costs/G.svg') }}"
+                                    class="form-color-img"></label>
                         <input class="form-check-input modal-form-checkbox" type="checkbox" id="greenCheck"
                             name="colors[]" value="G">
-                        <label class="form-check-label"><img src="{{ asset('images/costs/G.svg') }}"
-                                class="form-color-img"></label>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="resetCardFilters" type="button" class="btn modal-reset">Reset
+                <button id="resetDeckFilters" type="button" class="btn modal-reset">Reset
                     Filters</button>
                 <button type="submit" class="btn modal-search" data-bs-dismiss="modal">Search</button>
             </div>

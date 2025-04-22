@@ -38,7 +38,7 @@ class DecksController extends Controller
     public function yourDecks()
     {
         $user_id = Auth::id();
-        $decks = Deck::where('user_id', $user_id)->orderByDesc('created_at')->paginate(24);
+        $decks = Deck::where('user_id', $user_id)->orderBy('created_at', 'desc')->paginate(24);
         return view('decks.yourdecks', compact('decks'));
     }
 
@@ -150,7 +150,9 @@ class DecksController extends Controller
         }
 
         if ($request->filled('deck_format')) {
-            $query->where('format', $request->deck_format);
+            $query->whereHas('format', function ($q) use ($request) {
+                $q->whereRaw('name LIKE ?', [strtolower($request->deck_format)]);
+            });
         }
 
         if ($request->filled('deck_creator')) {
@@ -164,7 +166,7 @@ class DecksController extends Controller
             
             foreach ($colors as $color) {
                 $query->whereHas('colors', function ($q) use ($color) {
-                    $q->whereRaw('LOWER(name) = ?', [strtolower($color)]);
+                    $q->whereRaw('LOWER(code) = ?', [strtolower($color)]);
                 });
             }
         }        

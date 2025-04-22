@@ -31,7 +31,7 @@ Route::get('/decks/search-decks', [DecksController::class, 'filterDecks'])->name
 Route::get('/cards/sets', [CardsController::class, 'sets'])->name('sets');
 
 Route::get('/cards/sets/search-sets', [CardsController::class, 'searchSets'])->name('search-sets');
-Route::get('/cards/search-cards', [CardsController::class, 'searchCards'])->name('search-cards');
+Route::get('/cards/search-cards', [CardsController::class, 'filterCards'])->name('search-cards');
 Route::get('/cards/sets/{code}/cards', [CardsController::class, 'setCards'])->name('set-cards');
 Route::get('/cards/live-search', [CardsController::class, 'liveSearch'])->name('cards.live-search');
 

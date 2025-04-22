@@ -23,6 +23,7 @@
 
 .search-dropdown {
     background-color: #C8C8C8;
+    margin-left: 10px;
 }
 
 .search-dropdown:hover {
@@ -36,6 +37,7 @@
     align-items: center;
     gap: 10px;
     white-space: nowrap;
+    margin-left: 10px;
 }
 
 .modal-body {
@@ -102,4 +104,27 @@
 .modal-form-checkbox:checked {
     background-color: #d82596;
     border: 0;
+}
+
+.filters-applied {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-applied {
+    white-space: nowrap;
+    color: white;
+    background-color: #d82596;
+    padding: 5px;
+    border-radius: 10px;
+    display: flex;
+    font-weight: bold;
+    text-align: center;
+}
+
+.filter-applied-color {
+    width: 22px;
+    margin-left: 5px;
 }

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <x-search-bar />
+        <x-search-bar :sets="$sets"/>
         <h3 class="mb-3"><b>EXPLORE CARDS BY SET</b></h3>
         <div class="row g-4">
             @foreach ($sets as $set)

@@ -3,8 +3,7 @@
 
 @section('content')
     <div class="container">
-        <x-search-bar />
-        <!-- <x-card-filters /> -->
+        <x-search-bar :sets="$sets"/>
 
         @isset($set)
             <div class="d-flex align-items-center justify-items-center gap-3 mb-4">
