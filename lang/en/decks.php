@@ -19,4 +19,12 @@ return [
     'delete_deck' => 'Delete deck',
     'by' => 'By ',
     'add_cards' => 'Add cards',
+    'types' => [
+        'creature' => ['singular' => 'Creature', 'plural' => 'Creatures'],
+        'artifact' => ['singular' => 'Artifact', 'plural' => 'Artifacts'],
+        'enchantment' => ['singular' => 'Enchantment', 'plural' => 'Enchantments'],
+        'instant' => ['singular' => 'Instant', 'plural' => 'Instants'],
+        'sorcery' => ['singular' => 'Sorcery', 'plural' => 'Sorceries'],
+        'land' => ['singular' => 'Land', 'plural' => 'Lands'],
+    ],
 ];

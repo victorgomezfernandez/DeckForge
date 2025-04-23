@@ -31,15 +31,13 @@
                         @php
                             $totalCount = $cardsByType->count();
                         @endphp
-                        @if ($totalCount == 1)
-                            <h4 class="fw-bold">
-                                {{ $totalCount }} {{ $type }}
-                            </h4>
-                        @else
-                            <h4 class="fw-bold">
-                                {{ $totalCount }} {{ $type === 'Sorcery' ? 'Sorceries' : $type . 's' }}
-                            </h4>
-                        @endif
+                        @php
+                            $translatedType = __(
+                                'decks.types.' . strtolower($type) . '.' . ($totalCount === 1 ? 'singular' : 'plural'),
+                            );
+                        @endphp
+                        <h4 class="fw-bold">{{ $totalCount }} {{ $translatedType }}</h4>
+
 
                         @foreach ($cardsByType->groupBy('id') as $cardGroup)
                             @php

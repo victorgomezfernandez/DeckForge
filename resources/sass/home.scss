@@ -13,3 +13,12 @@
     font-size: 24px;
     font-weight: bold;
 }
+
+.form-check-input {
+    border: 1px solid black;
+}
+
+.form-check-input:checked {
+    background-color: #d82596;
+    border: 0;
+}

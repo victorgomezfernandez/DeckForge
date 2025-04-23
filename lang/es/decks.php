@@ -21,4 +21,12 @@ return [
     'add_cards' => 'Añadir cartas',
     'view_details' => 'Ver detalles',
     'set_as_thumbnail' => 'Establecer imagen del mazo',
+    'types' => [
+        'creature' => ['singular' => 'Criatura', 'plural' => 'Criaturas'],
+        'artifact' => ['singular' => 'Artefacto', 'plural' => 'Artefactos'],
+        'enchantment' => ['singular' => 'Encantamiento', 'plural' => 'Encantamientos'],
+        'instant' => ['singular' => 'Instantáneo', 'plural' => 'Instantáneos'],
+        'sorcery' => ['singular' => 'Conjuro', 'plural' => 'Conjuros'],
+        'land' => ['singular' => 'Tierra', 'plural' => 'Tierras'],
+    ],
 ];

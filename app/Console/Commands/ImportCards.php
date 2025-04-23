@@ -37,8 +37,9 @@ class ImportCards extends Command
      */
     public function handle()
     {
-        $url = "https://api.scryfall.com/cards/search?q=(set:lea OR set:leb OR set:2ed OR set:3ed OR set:4ed OR set:5ed OR set:6ed OR set:7ed OR set:8ed) lang:en unique:prints";
+        //$url = "https://api.scryfall.com/cards/search?q=(set:lea OR set:leb OR set:2ed OR set:3ed OR set:4ed OR set:5ed OR set:6ed OR set:7ed OR set:8ed) (lang:en OR lang:es) unique:prints";
         //$url = "https://api.scryfall.com/cards/search?q=(set:lea OR set:leb OR set:3ed) lang:en unique:prints";
+        $url = "https://api.scryfall.com/cards/search?q=lotho lang:es";
         $response = Http::get($url);
 
         if ($response->failed()) {
@@ -63,6 +64,8 @@ class ImportCards extends Command
                     'layout' => $card['layout'],
                     'mana_value' => $card['cmc'],
                     'released_at' => $card['released_at'],
+                    'oracle_id' => $card['oracle_id'],
+                    'lang' => $card['lang'],
                     'set_id' => $set->id
                 ]);
 
@@ -105,16 +108,33 @@ class ImportCards extends Command
                 }
 
                 if ($card['layout'] == ('normal' || 'saga' || 'class')) {
-                    $createdCardDetails = CardDetails::firstOrCreate([
-                        'name' => $card['name'],
-                        'power' => $card['power'] ?? null,
-                        'toughness' => $card['toughness'] ?? null,
-                        'loyalty' => $card['loyalty'] ?? null,
-                        'defense' => $card['defense'] ?? null,
-                        'oracle_text' => $card['oracle_text'] ?? null,
-                        'flavor_text' => $card['flavor_text'] ?? null,
-                        'card_id' => $createdCard['id']
-                    ]);
+                    if (
+                        $card['lang'] == "es" && isset($card['printed_name']) &&
+                        isset($card['printed_text'])
+                    ) {
+                        $createdCardDetails = CardDetails::firstOrCreate([
+                            'name' => $card['printed_name'],
+                            'power' => $card['power'] ?? null,
+                            'toughness' => $card['toughness'] ?? null,
+                            'loyalty' => $card['loyalty'] ?? null,
+                            'defense' => $card['defense'] ?? null,
+                            'oracle_text' => $card['printed_text'] ?? null,
+                            'flavor_text' => $card['flavor_text'] ?? null,
+                            'card_id' => $createdCard['id']
+                        ]);
+                    } elseif ($card['lang'] == "en") {
+                        $createdCardDetails = CardDetails::firstOrCreate([
+                            'name' => $card['name'],
+                            'power' => $card['power'] ?? null,
+                            'toughness' => $card['toughness'] ?? null,
+                            'loyalty' => $card['loyalty'] ?? null,
+                            'defense' => $card['defense'] ?? null,
+                            'oracle_text' => $card['oracle_text'] ?? null,
+                            'flavor_text' => $card['flavor_text'] ?? null,
+                            'card_id' => $createdCard['id']
+                        ]);
+                    }
+
 
                     $typeLine = $card['type_line'];
                     $parts = explode(' — ', $typeLine);

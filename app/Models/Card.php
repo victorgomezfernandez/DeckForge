@@ -22,6 +22,8 @@ class Card extends Model
         'layout',
         'mana_value',
         'released_at',
+        'oracle_id',
+        'lang',
         'set_id'
     ];
 

@@ -3,42 +3,43 @@
     <div class="modal-dialog">
         <div class="modal-content advanced-filters-modal">
             <div class="modal-header">
-                <h4 class="modal-title">Advanced Filters</h4>
+                <h4 class="modal-title">{{ __('cards.advanced_filters') }}</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" id="filtersClose"></button>
             </div>
 
             <div class="modal-body">
                 <div class="modal-field">
-                    <label for="card_name" class="modal-form-label">Name</label>
+                    <label for="card_name" class="modal-form-label">{{ __('cards.name') }}</label>
                     <input type="text" class="modal-input form-control" name="card_name">
                 </div>
                 <div class="modal-field">
-                    <label for="card_types" class="modal-form-label">Types</label>
+                    <label for="card_types" class="modal-form-label">{{ __('cards.types') }}</label>
                     <input type="text" class="modal-input form-control" name="card_types">
                 </div>
                 <div class="modal-field">
-                    <label for="card_power" class="modal-form-label">Power</label>
+                    <label for="card_power" class="modal-form-label">{{ __('cards.power') }}</label>
                     <input type="number" class="modal-input form-control" name="card_power">
                 </div>
                 <div class="modal-field">
-                    <label for="card_toughness" class="modal-form-label">Toughness</label>
+                    <label for="card_toughness" class="modal-form-label">{{ __('cards.toughness') }}</label>
                     <input type="number" class="modal-input form-control" name="card_toughness">
                 </div>
                 <div class="modal-field">
-                    <label for="card_value" class="modal-form-label">Mana Value</label>
+                    <label for="card_value" class="modal-form-label">{{ __('cards.mana_value') }}</label>
                     <input type="number" class="modal-input form-control" name="card_value">
                 </div>
                 <div class="modal-field">
-                    <label for="card_set" class="modal-form-label">Set</label>
+                    <label for="card_set" class="modal-form-label">{{ __('cards.set') }}</label>
                     <select class="modal-input form-select" name="card_set">
-                        <option value="">Any</option>
-                        @foreach($sets as $set)
-                        <option value={{ $set->code }}>{{ $set->name }} - {{ strtoupper($set->code) }}</option>
+                        <option value="">{{ __('cards.any') }}</option>
+                        @foreach ($sets as $set)
+                            <option value={{ $set->code }}>{{ $set->name }} - {{ strtoupper($set->code) }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="modal-field">
-                    <label for="deck_colors" class="modal-form-label">Colors</label>
+                    <label for="deck_colors" class="modal-form-label">{{ __('cards.colors') }}</label>
                     <div class="form-colors">
                         <input class="form-check-input modal-form-checkbox" type="checkbox" id="whiteCheck"
                             name="colors[]" value="W">
@@ -64,29 +65,57 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="resetCardFilters" type="button" class="btn modal-reset">Reset
-                    Filters</button>
-                <button type="submit" class="btn modal-search" data-bs-dismiss="modal">Search</button>
+                <button id="resetCardFilters" type="button"
+                    class="btn modal-reset">{{ __('cards.reset_filters') }}</button>
+                <button type="submit" class="btn modal-search"
+                    data-bs-dismiss="modal">{{ __('cards.search') }}</button>
             </div>
         </div>
     </div>
 </div>
 
-@if (request()->hasAny(['query', 'deck_name', 'deck_format', 'deck_creator', 'colors']))
+@if (request()->hasAny(['query', 'card_name', 'card_types', 'set', 'colors']))
     <div class="filters-applied">
-        @if (request('deck_format'))
+        @if (request('card_name'))
             <div class="filter-applied">
-                Format: {{ request('deck_format') }}
+                {{ __('cards.name') }}: {{ request('card_name') }}
             </div>
         @endif
-        @if (request('deck_creator'))
+        @if (request('card_types'))
             <div class="filter-applied">
-                Creator: {{ request('deck_creator') }}
+                {{ __('cards.types') }}: {{ request('card_types') }}
+            </div>
+        @endif
+        @if (request('card_power') && request('card_toughness'))
+            <div class="filter-applied">
+                {{ __('cards.stats') }}: {{ request('card_power') }}/{{ request('card_toughness') }}
+            </div>
+        @else
+            @if (request('card_power'))
+                <div class="filter-applied">
+                    {{ __('cards.power') }}: {{ request('card_power') }}
+                </div>
+            @endif
+            @if (request('card_toughness'))
+                <div class="filter-applied">
+                    {{ __('cards.toughness') }}: {{ request('card_toughness') }}
+                </div>
+            @endif
+        @endif
+
+        @if (request('card_value'))
+            <div class="filter-applied">
+                {{ __('cards.mana_value') }}: {{ request('card_value') }}
+            </div>
+        @endif
+        @if (request('card_set'))
+            <div class="filter-applied">
+                {{ __('cards.set') }}: {{ strtoupper(request('card_set')) }}
             </div>
         @endif
         @if (request('colors'))
             <div class="filter-applied">
-                Colors:
+                {{ __('cards.colors') }}:
                 @foreach (request('colors', []) as $color)
                     <img src={{ asset("images/costs/{$color}.svg") }} alt="" class="filter-applied-color">
                 @endforeach

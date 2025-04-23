@@ -21,6 +21,8 @@ return new class extends Migration
             $table->double('mana_value')->nullable(true);
             $table->date('released_at')->nullable(true);
             $table->foreignId('set_id')->constrained('sets')->onDelete('cascade');
+            $table->text('oracle_id');
+            $table->string('lang');
             $table->timestamps();
         });
     }
