@@ -32,7 +32,8 @@ export function setupLiveSearch() {
                             const name = card.card_details[0]?.name ?? 'Unnamed';
                             const setCode = card.set?.code?.toUpperCase() ?? 'Unknown';
                             const number = card.collector_number ?? 'N/A';
-                            li.textContent = `${name} - ${setCode} - ${number}`;
+                            const lang = card.lang ?? 'N/A';
+                            li.textContent = `${name} - ${setCode} - ${number} - ${lang}`;
 
                             li.dataset.card = JSON.stringify(card);
                             li.addEventListener('click', function () {

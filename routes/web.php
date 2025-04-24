@@ -18,7 +18,7 @@ Route::get('/home', [DecksController::class, 'recentContent'])->name('home');
 Route::get('/decks', [DecksController::class, 'publicDecks'])->name('decks');
 Route::post('/decks', [DecksController::class, 'store'])->name('decks.store')->middleware('auth');
 Route::get('/decks/deck-details/{id}', [DecksController::class, 'deckDetails'])->name('deck-details');
-Route::post('/decks/deck-details/{id}/add-card', [CardsController::class, 'addCardToDeck']);
+Route::post('/decks/deck-details/{id}/add-card', [DecksController::class, 'addCardToDeck']);
 Route::put('/decks/{deck}/update-thumbnail', [DecksController::class, 'updateDeckThumbnail']);
 Route::put('/decks/{deck}/update-field', [DecksController::class, 'updateField'])->middleware('auth');
 Route::delete('/decks/{deck}', [DecksController::class, 'destroy'])->middleware('auth');

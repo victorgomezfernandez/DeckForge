@@ -2,6 +2,7 @@
     background-color: #C8C8C8;
     border-radius: 45px 0 0 45px;
     height: 40px;
+    width: 250px;
 }
 
 .search-input:focus {
@@ -22,6 +23,7 @@
 }
 
 .search-dropdown {
+    border-radius: 45px;
     background-color: #C8C8C8;
     margin-left: 10px;
 }
@@ -31,6 +33,7 @@
 }
 
 .filters-button {
+    border-radius: 45px;
     background-color: #C8C8C8;
     display: flex;
     flex-direction: row;
@@ -131,8 +134,8 @@
 }
 
 .type-select {
+    border-radius: 45px;
     background-color: #C8C8C8;
-    border-radius: 5px;
     width: 50%;
     cursor: pointer;
 }

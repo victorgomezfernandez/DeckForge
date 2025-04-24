@@ -1,11 +1,13 @@
 @props(['sets' => collect()])
 <div class="d-flex align-items-center gap-3 mb-3" style="width: fit-content;">
-    <label for="search"><b>{{ __('search_bar.search') }}</b></label>
     <form class="d-flex align-items-center" method="GET" id="searchForm">
-        <input type="search" name="query" class="form-control search-input" aria-label="Search" />
-        <button class="btn search-button" type="submit">
-            <img src="{{ asset('images/search.svg') }}" alt="search" />
-        </button>
+        <div class="d-flex align-items-center">
+            <input type="search" name="query" class="form-control search-input" aria-label="Search"
+                placeholder="{{ __('search_bar.search') }}" />
+            <button class="btn search-button" type="submit">
+                <img src="{{ asset('images/search.svg') }}" alt="search" />
+            </button>
+        </div>
 
         @if (request()->is('decks*') || request()->is('your-decks*'))
             <input type="hidden" name="type" id="selectedType" value="Decks" />
@@ -24,7 +26,7 @@
 
         @if (!request()->is('home') && !request()->is('your-decks*'))
             <button type="button" class="btn filters-button ml-3" data-bs-toggle="modal"
-                data-bs-target="#advancedFilters">{{ __('search_bar.advanced_filters') }} <i
+                data-bs-target="#advancedFilters" id="filtersButton">{{ __('search_bar.advanced_filters') }} <i
                     class="fa-solid fa-filter"></i></button>
             @if (request()->is('decks*'))
                 <x-deck-filters />
@@ -37,7 +39,7 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('searchForm');
         const typeSelect = document.getElementById('selectedType');
 
@@ -47,7 +49,7 @@
             Sets: '{{ route('search-sets') }}',
         };
 
-        typeSelect.addEventListener('change', function () {
+        typeSelect.addEventListener('change', function() {
             const selectedType = typeSelect.value;
             form.action = typeToRoute[selectedType] || '{{ route('search-cards') }}';
         });
@@ -56,4 +58,3 @@
         form.action = typeToRoute[selectedType] || '{{ route('search-cards') }}';
     });
 </script>
-

@@ -55,11 +55,6 @@
                                 <input type="hidden" class="deck-details-relation-id" value={{ $card->pivot->id }}>
                                 <input type="hidden" class="deck-details-deck-id" value={{ $deck->id }}>
                                 <div class="deck-details-card-costs d-flex">
-                                    @if ($isCreator)
-                                        <button class="btn" class="delete-card-button">
-                                            <i class="fa-solid fa-x" style="color: #D82596"></i>
-                                        </button>
-                                    @endif
                                     @foreach ($card->card_details as $detail)
                                         @foreach ($detail->mana_costs as $mana_cost)
                                             @for ($i = 0; $i < $mana_cost->amount; $i++)
@@ -68,6 +63,11 @@
                                             @endfor
                                         @endforeach
                                     @endforeach
+                                    @if ($isCreator)
+                                        <button class="btn" class="delete-card-button">
+                                            <i class="fa-solid fa-x" style="color: #D82596"></i>
+                                        </button>
+                                    @endif
                                 </div>
                                 <x-card-modal :card="$card" />
                             </div>

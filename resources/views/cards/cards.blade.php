@@ -17,7 +17,7 @@
             <h3 class="mb-3"><b>{{ __('cards.explore_cards') }}</b></h3>
         @endisset
 
-        <div class="row g-4">
+        <div class="row g-2">
             @foreach ($cards as $card)
                 <x-card-card :card="$card" />
             @endforeach

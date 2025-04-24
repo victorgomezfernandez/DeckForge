@@ -1,34 +1,21 @@
 export function searchBarTarget() {
-    const form = document.getElementById("searchForm");
-    const selectedTypeInput = document.getElementById("selectedType");
-    const path = window.location.pathname;
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('searchForm');
+        const typeSelect = document.getElementById('selectedType');
 
-    if (path.includes("/your-decks")) {
-        form.action = "/your-decks/search-decks";
-    } else if (path.includes("/decks")) {
-        form.action = "/decks/search-decks";
-    } else {
-        form.action = "/cards/search-cards";
-    }
+        const typeToRoute = {
+            Cards: window.routes.cards,
+            Decks: window.routes.decks,
+            Sets: window.routes.sets,
+        };
 
-    document.querySelectorAll(".dropdown-item").forEach(function (item) {
-        item.addEventListener("click", function () {
-            const selectedValue = item.getAttribute("data-value");
-            document.getElementById("dropdownMenu").textContent = selectedValue;
-            selectedTypeInput.value = selectedValue;
-            switch (selectedValue) {
-                case "Cards":
-                    form.action = "/cards/search-cards";
-                    break;
-                case "Sets":
-                    form.action = "/cards/sets/search-sets";
-                    break;
-                case "Decks":
-                    form.action = path.includes("/your-decks")
-                        ? "/your-decks/search-decks"
-                        : "/decks/search-decks";
-                    break;
-            }
+        typeSelect.addEventListener('change', function () {
+            const selectedType = typeSelect.value;
+            form.action = typeToRoute[selectedType] || window.routes.cards;
         });
+
+        const selectedType = typeSelect.value;
+        form.action = typeToRoute[selectedType] || window.routes.cards;
     });
+
 }

@@ -64,15 +64,15 @@
                 @else
                     <x-deck-create-modal />
                     <li class="nav-item">
-                        <a href="{{ route('decks') }}" class="nav-link underline">
+                        <span href="{{ route('decks') }}" class="nav-link underline">
                             {{ Auth::user()->name }}
-                        </a>
+                        </span>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('logout') ? 'active' : 'underline' }}"
                             href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('header.logout') }}
+                            <i class="fa-solid fa-right-from-bracket" style="color: black"></i>
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

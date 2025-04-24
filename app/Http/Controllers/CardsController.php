@@ -114,6 +114,10 @@ class CardsController extends Controller
             });
         };
 
+        if ($request->filled('card_lang')) {
+            $query->where('lang', ($request->card_lang));
+        };
+
         if ($request->filled('colors')) {
             $colors = $request->input('colors');
 
@@ -147,35 +151,5 @@ class CardsController extends Controller
         return response()->json($cards);
     }
 
-    public function addCardToDeck(Request $request)
-    {
-        $validated = $request->validate([
-            'deck_id' => 'required|exists:decks,id',
-            'card' => 'required|array',
-        ]);
-
-        $deck = Deck::with('colors')->find($validated['deck_id']);
-
-        if (!$deck) {
-            return response()->json(['error' => 'Deck not found.'], 404);
-        }
-
-        $card = Card::find($validated['card']['id']);
-
-        if (!$card) {
-            return response()->json(['error' => 'Card not found.'], 404);
-        }
-
-        $cardColorIds = $card->colors->pluck('id')->toArray();
-        $deckColorIds = $deck->colors->pluck('id')->toArray();
-
-        $newColorIds = array_diff($cardColorIds, $deckColorIds);
-
-        if (!empty($newColorIds)) {
-            $deck->colors()->attach($newColorIds);
-        }
-
-        $deck->cards()->attach($card);
-        return response()->json(['message' => 'Card added to deck successfully.']);
-    }
+    
 }
