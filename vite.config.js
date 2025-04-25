@@ -11,4 +11,14 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        host: 'deckfoundry.com',
+        port: 5173,
+        hmr: {
+            host: 'deckfoundry.com',
+        },
+        headers: {
+        	'Access-Control-Allow-Origin': '*',
+        },
+    },
 });

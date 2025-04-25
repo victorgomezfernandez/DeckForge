@@ -33,6 +33,9 @@ class ImportCards extends Command
         }
 
         $this->info("Fetching cards");
+        $totalCards = $response->json()['total_cards'] ?? null;
+        $bar = $this->output->createProgressBar($totalCards);
+        $bar->start();
 
         $more = true;
 
@@ -64,14 +67,14 @@ class ImportCards extends Command
                     'set_id' => $set->id
                 ]);
 
-                foreach ($card['legalities'] as $formatName => $legality) {
-                    $format = Format::where('name', $formatName)->first();
-                    Legality::firstOrCreate([
-                        'card_id' => $createdCard['id'],
-                        'format_id' => $format->id,
-                        'name' => $legality
-                    ]);
-                }
+                // foreach ($card['legalities'] as $formatName => $legality) {
+                //     $format = Format::where('name', $formatName)->first();
+                //     Legality::firstOrCreate([
+                //         'card_id' => $createdCard['id'],
+                //         'format_id' => $format->id,
+                //         'name' => $legality
+                //     ]);
+                // }
 
                 foreach ($card['keywords'] as $keywordName) {
                     $keyword = Keyword::firstOrCreate(['name' => $keywordName]);
@@ -138,6 +141,7 @@ class ImportCards extends Command
                         }
                     }
                 }
+                $bar->advance();
             }
 
             if ($response->json('has_more')) {
@@ -147,8 +151,7 @@ class ImportCards extends Command
             }
         }
 
-        $this->info("Cards imported");
-        Artisan::call('db:seed', ['--class' => 'DeckSeeder']);
-        Artisan::call('db:seed', ['--class' => 'DeckCardSeeder']);
+        $bar->finish();
+
     }
 }

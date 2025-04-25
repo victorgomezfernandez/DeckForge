@@ -55,6 +55,7 @@
                                 </label>
                             </div>
                         </div>
+                        <a href="/google-auth/redirect">with google</a>
                         <div class="row mb-2 w-100">
                             <button type="submit" class="btn btn-primary" style="background-color: #D82596; border: 0px;">
                                 {{ __('login_register.login') }}

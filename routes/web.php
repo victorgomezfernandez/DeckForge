@@ -4,6 +4,8 @@ use App\Http\Controllers\CardsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DecksController;
+use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
 
 // Route::get('/', function () {
 //     return view('home');
@@ -14,6 +16,28 @@ use App\Http\Controllers\DecksController;
 // });
 
 Route::get('/', [DecksController::class, 'recentContent'])->name('home');
+Route::get('/google-auth/redirect', function () {
+
+    return Socialite::driver('google')->redirect();
+
+});
+
+Route::get('/google-auth/callback', function () {
+
+    $user_google = Socialite::driver('google')->user();
+
+    $user = User::updateOrCreate([
+        'google_id' => $user_google->id,
+    ], [
+        'name' => $user_google->name,
+        'email' => $user_google->email,
+    ]);
+
+    Auth::login($user);
+
+    return redirect('/home');
+
+});
 Route::get('/home', [DecksController::class, 'recentContent'])->name('home');
 Route::get('/decks', [DecksController::class, 'publicDecks'])->name('decks');
 Route::post('/decks', [DecksController::class, 'store'])->name('decks.store')->middleware('auth');
