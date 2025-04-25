@@ -10,7 +10,7 @@
                     </div>
                     <div class="row">
                         <span class="h2"
-                            style="text-align: center; font-weight: 600;">{{ __('login_register.register_to_deckforge') }}</span>
+                            style="text-align: center; font-weight: 600;">{{ __('login_register.register_to_deckfoundry') }}</span>
                     </div>
                 </div>
                 <div class="register-body">

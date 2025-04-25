@@ -12,6 +12,7 @@ use App\Models\ManaCost;
 use App\Models\Set;
 use App\Models\Type;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
 
 class ImportCards extends Command
@@ -21,9 +22,9 @@ class ImportCards extends Command
 
     public function handle()
     {
-        $url = "https://api.scryfall.com/cards/search?q=(set:lea OR set:leb OR set:2ed OR set:3ed OR set:4ed OR set:5ed OR set:6ed OR set:7ed OR set:8ed) (lang:en OR lang:es) unique:prints";
+        $url = "https://api.scryfall.com/cards/search?q=(set:lea OR set:leb OR set:2ed OR set:3ed OR set:4ed OR set:5ed OR set:6ed OR set:7ed OR set:8ed) (lang:en) unique:prints";
         //$url = "https://api.scryfall.com/cards/search?q=(set:lea OR set:leb OR set:3ed) lang:en unique:prints";
-        $url = "https://api.scryfall.com/cards/search?q=wear//tear";
+        //$url = "https://api.scryfall.com/cards/search?q=wear//tear";
         $response = Http::get($url);
 
         if ($response->failed()) {
@@ -147,5 +148,7 @@ class ImportCards extends Command
         }
 
         $this->info("Cards imported");
+        Artisan::call('db:seed', ['--class' => 'DeckSeeder']);
+        Artisan::call('db:seed', ['--class' => 'DeckCardSeeder']);
     }
 }
