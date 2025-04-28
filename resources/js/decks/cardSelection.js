@@ -10,11 +10,11 @@ export function setupCardSelection() {
 
         const html = `
             <img src="${card.img ?? ''}" alt="not_found" class="img-fluid selected-card-img"/>
-            <button type="button" class="btn deck-details-tag" data-bs-toggle="modal" data-bs-target="#${card.id}">
+            <button type="button" class="btn deck-details-tag deck-details-button" data-bs-toggle="modal" data-bs-target="#${card.id}">
                 ${window.translations.viewDetails}
             </button>
             ${isAuthenticated && userId === creatorId
-                ? `<button class="btn deck-details-tag" id="set-thumbnail-btn" data-card-id="${card.id}" data-art-crop="${card.art_crop}">
+                ? `<button class="btn deck-details-tag deck-details-button" id="set-thumbnail-btn" data-card-id="${card.id}" data-art-crop="${card.art_crop}">
                         ${window.translations.setAsThumbnail}
                    </button>`
                 : ''

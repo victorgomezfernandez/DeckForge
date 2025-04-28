@@ -67,14 +67,14 @@ class ImportCards extends Command
                     'set_id' => $set->id
                 ]);
 
-                // foreach ($card['legalities'] as $formatName => $legality) {
-                //     $format = Format::where('name', $formatName)->first();
-                //     Legality::firstOrCreate([
-                //         'card_id' => $createdCard['id'],
-                //         'format_id' => $format->id,
-                //         'name' => $legality
-                //     ]);
-                // }
+                foreach ($card['legalities'] as $formatName => $legality) {
+                    $format = Format::where('name', $formatName)->first();
+                    Legality::firstOrCreate([
+                        'card_id' => $createdCard['id'],
+                        'format_id' => $format->id,
+                        'name' => $legality
+                    ]);
+                }
 
                 foreach ($card['keywords'] as $keywordName) {
                     $keyword = Keyword::firstOrCreate(['name' => $keywordName]);
@@ -152,6 +152,7 @@ class ImportCards extends Command
         }
 
         $bar->finish();
+        
 
     }
 }

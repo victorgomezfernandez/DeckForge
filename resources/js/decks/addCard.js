@@ -22,6 +22,12 @@ export function addCardToDeck(card, input) {
                     rebindDeleteEvents();
                     cardAmountElement.textContent = parseInt(cardAmountElement.textContent) + 1;
                 });
+            fetch(`/decks/deck-details/${deckId}/colors-html`)
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('deck-colors').innerHTML = html;
+
+                });
         })
         .catch(console.error);
 }

@@ -50,8 +50,14 @@ class DecksController extends Controller
 
     public function getDeckCards($id)
     {
-        $deck = Deck::with(['cards.card_details.types', 'cards.card_details.mana_costs.color', 'format'])->findOrFail($id);
+        $deck = Deck::findOrFail($id);
         return view('components.deck-details-cards', compact('deck'))->render();
+    }
+
+    public function getDeckColors($id)
+    {
+        $deck = Deck::findOrFail($id);
+        return view('components.deck-details-colors', compact('deck'))->render();
     }
 
     public function publicDecks()
@@ -107,13 +113,30 @@ class DecksController extends Controller
 
     public function removeCardFromDeck(Request $request, Deck $deck, $cardDeckId)
     {
-        $deleted = DB::table('cards_deck')->where('id', $cardDeckId)->delete();
+        $cardDeck = DB::table('cards_deck')->where('id', $cardDeckId)->first();
 
-        if ($deleted) {
-            return response()->json(['success' => true]);
+        $card = Card::find($cardDeck->card_id);
+
+        $cardColors = $card->colors;
+
+        DB::table('cards_deck')->where('id', $cardDeckId)->delete();
+
+        $remainingCardIds = DB::table('cards_deck')->where('deck_id', $deck->id)->pluck('card_id');
+
+        $remainingColorIds = DB::table('cards')
+            ->join('card_colors', 'cards.id', '=', 'card_colors.card_id')
+            ->whereIn('cards.id', $remainingCardIds)
+            ->pluck('card_colors.color_id')
+            ->unique()
+            ->toArray();
+
+        foreach ($cardColors as $cardColor) {
+            if (!in_array($cardColor->id, $remainingColorIds)) {
+                $deck->colors()->detach($cardColor->id);
+            }
         }
 
-        return response()->json(['success' => false, 'message' => 'No se encontró la carta']);
+        return response()->json(['success' => true]);
     }
 
     public function updateField(Request $request, Deck $deck)

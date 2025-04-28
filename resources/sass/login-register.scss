@@ -7,3 +7,23 @@
     border-color: #D82596;
     background-color: #C8C8C8;
 }
+
+.form-socials {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-social {
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+    background-color: #D82596;
+    border-radius: 5px;
+    text-align: center;
+    width: fit-content;
+}
+
+.form-social:hover {
+    background-color: #98196a;
+}

@@ -40,10 +40,8 @@
         </div>
         <div class="row mt-2">
             <div class="deck-details-header">
-                <div class="deck-details-colors">
-                    @foreach ($deck->colors as $color)
-                        <img src="{{ asset("images/costs/{$color->code}.svg") }}">
-                    @endforeach
+                <div id="deck-colors">
+                    @include('components.deck-details-colors', ['deck' => $deck])
                 </div>
                 @if (auth()->check() && auth()->user()->id === $deck->user_id)
                     <input type="text" id="deckNameInput" class="deck-details-name deck-details-input"
@@ -73,7 +71,7 @@
 @endsection
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const nameInput = document.getElementById('deckNameInput');
         const descriptionInput = document.getElementById('deckDescriptionInput');
 
@@ -83,7 +81,7 @@
         }
 
         function enforceMaxLength(input, max) {
-            input.addEventListener('input', function () {
+            input.addEventListener('input', function() {
                 if (input.value.length > max) {
                     input.value = input.value.slice(0, max);
                 }
@@ -102,4 +100,3 @@
         }
     });
 </script>
-

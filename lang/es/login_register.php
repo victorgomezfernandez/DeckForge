@@ -8,5 +8,7 @@ return [
     'register_to_deckfoundry' => 'REGISTRARSE EN DECKFOUNDRY',
     'name' => 'Nombre',
     'confirm_password' => 'Confirmar Contraseña',
-    'register' => 'REGISTRARSE'
+    'register' => 'REGISTRARSE',
+    'google' => 'Continuar con Google',
+    'github' => 'Continuar con GitHub'
 ];

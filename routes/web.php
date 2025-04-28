@@ -38,6 +38,28 @@ Route::get('/google-auth/callback', function () {
     return redirect('/home');
 
 });
+Route::get('/github-auth/redirect', function () {
+
+    return Socialite::driver('github')->redirect();
+
+});
+
+Route::get('/github-auth/callback', function () {
+
+    $user_github = Socialite::driver('github')->user();
+
+    $user = User::updateOrCreate([
+        'github_id' => $user_github->id,
+    ], [
+        'name' => $user_github->name ?? $user_github->nickname ?? 'GitHubUser',
+        'email' => $user_github->email,
+    ]);
+
+    Auth::login($user);
+
+    return redirect('/home');
+
+});
 Route::get('/home', [DecksController::class, 'recentContent'])->name('home');
 Route::get('/decks', [DecksController::class, 'publicDecks'])->name('decks');
 Route::post('/decks', [DecksController::class, 'store'])->name('decks.store')->middleware('auth');
@@ -48,6 +70,7 @@ Route::put('/decks/{deck}/update-field', [DecksController::class, 'updateField']
 Route::delete('/decks/{deck}', [DecksController::class, 'destroy'])->middleware('auth');
 Route::delete('/decks/{deck}/remove-card/{cardDeckId}', [DecksController::class, 'removeCardFromDeck']);
 Route::get('/decks/deck-details/{id}/cards-html', [DecksController::class, 'getDeckCards']);
+Route::get('/decks/deck-details/{id}/colors-html', [DecksController::class, 'getDeckColors']);
 Route::get('/your-decks', [DecksController::class, 'yourDecks'])->name('your-decks')->middleware('auth');
 Route::get('/your-decks/search-decks', [DecksController::class, 'searchYourDecks'])->name('your-decks.search')->middleware('auth');
 Route::get('/decks/search-decks', [DecksController::class, 'filterDecks'])->name('search-decks');

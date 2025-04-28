@@ -55,9 +55,16 @@
                                 </label>
                             </div>
                         </div>
-                        <a href="/google-auth/redirect">with google</a>
+                        <div class="form-socials row mb-2 w-100">
+                            <a href="/google-auth/redirect" class="form-social">
+                                <i class="fa-brands fa-google" style="color: white;"></i> {{ __('login_register.google') }} 
+                            </a>
+                            <a href="/github-auth/redirect" class="form-social">
+                                <i class="fa-brands fa-github" style="color: white;"></i> {{ __('login_register.github') }}
+                            </a>
+                        </div>
                         <div class="row mb-2 w-100">
-                            <button type="submit" class="btn btn-primary" style="background-color: #D82596; border: 0px;">
+                            <button type="submit" class="form-submit btn btn-primary" style="background-color: #D82596; border: 0px;">
                                 {{ __('login_register.login') }}
                             </button>
                         </div>

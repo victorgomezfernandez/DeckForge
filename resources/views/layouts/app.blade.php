@@ -29,22 +29,31 @@
     <footer style="background-color: #333333; color: white; width: 100%; padding: 20px; bottom: 0;">
         <div class="container">
             <div class="row" style="text-align: center;">
-                {{-- <p>Magic: The Gathering and Wizards of the Coast are trademarks of Wizards of the Coast LLC. © 1993-2025
-                    Wizards. All Rights Reserved </p> --}}
-                <p>{{ __('footer.policy') }}</p>
-                <p>{{ __('footer.scryfall') }}<a href="https://www.scryfall.com">Scryfall</a>
-                </p>
-            </div>
-            <div class="row">
-                <div style="display: flex; flex-direction: row; gap: 20px; justify-content: center;">
-                    <a href="https://www.github.com/victorgomezfernandez">
-                        <i class="fa-brands fa-github" style="color: #d82596; font-size: 25px;"></i>
-                    </a>
-                    <a href="mailto:victorgoferjim@gmail.com">
-                        <i class="fa-solid fa-envelope" style="color: #d82596; font-size: 25px;"></i>
-                    </a>
+                <div class="col-lg-3">
+                    <p class="footer-header">{{ __('footer.contact') }}</p>
+                    <div style="display: flex; flex-direction: row; gap: 20px; justify-content: center;">
+                        <a href="https://www.github.com/victorgomezfernandez">
+                            <i class="fa-brands fa-github" style="color: #d82596; font-size: 25px;"></i>
+                        </a>
+                        <a href="mailto:victorgoferjim@gmail.com">
+                            <i class="fa-solid fa-envelope" style="color: #d82596; font-size: 25px;"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <p>{{ __('footer.policy') }}</p>
+                    <p>{{ __('footer.scryfall') }}<a href="https://www.scryfall.com">Scryfall</a></p>
+                </div>
+                <div class="col-lg-3">
+                    <p class="footer-header">{{ __('footer.links') }}</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="/decks" style="color: #d82596;">{{ __('footer.explore_decks') }}</a></li>
+                        <li><a href="/sets/cards" style="color: #d82596;">{{ __('footer.explore_sets') }}</a></li>
+                    </ul>
+
                 </div>
             </div>
+
         </div>
     </footer>
     @stack('scripts')

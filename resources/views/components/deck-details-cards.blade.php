@@ -64,7 +64,7 @@
                                         @endforeach
                                     @endforeach
                                     @if ($isCreator)
-                                        <button class="btn" class="delete-card-button">
+                                        <button class="btn delete-card-button" >
                                             <i class="fa-solid fa-x" style="color: #D82596"></i>
                                         </button>
                                     @endif

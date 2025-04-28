@@ -17,6 +17,12 @@ export function removeCard(cardDeckId, deckId) {
                         document.getElementById('deck-card-list').innerHTML = html;
                         rebindDeleteEvents();
                     });
+                fetch(`/decks/deck-details/${deckId}/colors-html`)
+                    .then(res => res.text())
+                    .then(html => {
+                        document.getElementById('deck-colors').innerHTML = html;
+
+                    });
             } else {
                 alert('No se pudo eliminar la carta');
             }
