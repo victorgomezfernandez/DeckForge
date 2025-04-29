@@ -18,7 +18,8 @@ export default defineConfig({
             host: 'deckfoundry.com',
         },
         headers: {
-        	'Access-Control-Allow-Origin': '*',
+        	'Access-Control-Allow-Origin': 'http://deckfoundry.com:8000',
+            'access-control-allow-methods': 'GET',
         },
     },
 });

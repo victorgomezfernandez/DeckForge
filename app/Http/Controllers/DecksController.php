@@ -62,7 +62,7 @@ class DecksController extends Controller
 
     public function publicDecks()
     {
-        $decks = Deck::where('public', TRUE)->orderByDesc('created_at')->paginate(24);
+        $decks = Deck::where('public', TRUE)->orderBy('created_at')->paginate(24);
         return view('decks.decks', compact('decks'));
     }
 
@@ -153,6 +153,14 @@ class DecksController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function updateFormat(Request $request, Deck $deck)
+    {
+        $format = Format::where('name', $request['format'])->first();
+        $deck->format_id = $format->id;
+        $deck->save();
+        return response()->json(['success'=> true]);
+    }
+
     // public function searchDecks(Request $request)
     // {
     //     $query = $request->input('query');
@@ -186,7 +194,7 @@ class DecksController extends Controller
 
         $decks = Deck::where('user_id', $user_id)
             ->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%'])
-            ->orderByDesc('created_at')
+            ->orderBy('created_at')
             ->paginate(24);
 
         return view('decks.yourdecks', compact('decks'));

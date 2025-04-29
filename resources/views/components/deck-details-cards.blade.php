@@ -44,7 +44,10 @@
                                 $card = $cardGroup->first();
                                 $quantity = $cardGroup->count();
                                 $displayedCardIds->push($card->id);
+
+                                $legality = $card->legalities->where('format_id', $deck->format_id)->first();
                             @endphp
+
 
                             <div class="deck-details-card d-flex justify-content-between align-items-center"
                                 data-card="{{ json_encode($card) }}" data-art-crop="{{ $card->art_crop ?? '' }}">
@@ -63,8 +66,21 @@
                                             @endfor
                                         @endforeach
                                     @endforeach
+                                    @if ($legality)
+                                        @if ($legality->name === 'banned' || $legality->name === 'not_legal')
+                                            <img src="{{ asset('images/legalities/banned.svg') }}"
+                                                title="{{ __('decks.not_legal') }} {{ $deck->format->name }}"
+                                                style="width: 20px; height: 20px;">
+                                        @elseif ($legality->name === 'restricted')
+                                            <img src="{{ asset('images/legalities/restricted.svg') }}"
+                                                title="{{ __('decks.restricted') }} {{ $deck->format->name }}"
+                                                style="width: 20px; height: 20px;">
+                                        @endif
+                                    @endif
+
+
                                     @if ($isCreator)
-                                        <button class="btn delete-card-button" >
+                                        <button class="btn delete-card-button">
                                             <i class="fa-solid fa-x" style="color: #D82596"></i>
                                         </button>
                                     @endif

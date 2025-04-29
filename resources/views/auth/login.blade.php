@@ -59,6 +59,9 @@
                             <a href="/google-auth/redirect" class="form-social">
                                 <i class="fa-brands fa-google" style="color: white;"></i> {{ __('login_register.google') }} 
                             </a>
+                            <a href="/facebook-auth/redirect" class="form-social">
+                                <i class="fa-brands fa-facebook" style="color: white;"></i> {{ __('login_register.facebook') }} 
+                            </a>
                             <a href="/github-auth/redirect" class="form-social">
                                 <i class="fa-brands fa-github" style="color: white;"></i> {{ __('login_register.github') }}
                             </a>

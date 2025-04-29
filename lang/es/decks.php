@@ -29,4 +29,6 @@ return [
         'sorcery' => ['singular' => 'Conjuro', 'plural' => 'Conjuros'],
         'land' => ['singular' => 'Tierra', 'plural' => 'Tierras'],
     ],
+    'not_legal' => 'No es legal en',
+    'restricted'=> 'Restringida en',
 ];

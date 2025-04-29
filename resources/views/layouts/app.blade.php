@@ -47,8 +47,8 @@
                 <div class="col-lg-3">
                     <p class="footer-header">{{ __('footer.links') }}</p>
                     <ul style="list-style: none; padding: 0;">
-                        <li><a href="/decks" style="color: #d82596;">{{ __('footer.explore_decks') }}</a></li>
-                        <li><a href="/sets/cards" style="color: #d82596;">{{ __('footer.explore_sets') }}</a></li>
+                        <li><a href="/decks">{{ __('footer.explore_decks') }}</a></li>
+                        <li><a href="/sets/cards">{{ __('footer.explore_sets') }}</a></li>
                     </ul>
 
                 </div>

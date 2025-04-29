@@ -10,5 +10,6 @@ return [
     'confirm_password' => 'Confirm Password',
     'register' => 'REGISTER',
     'google' => 'Continue with Google',
-    'github' => 'Continue with GitHub'
+    'github' => 'Continue with GitHub',
+    'facebook'=> 'Continue with Facebook',
 ];

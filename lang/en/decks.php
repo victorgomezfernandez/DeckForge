@@ -27,4 +27,6 @@ return [
         'sorcery' => ['singular' => 'Sorcery', 'plural' => 'Sorceries'],
         'land' => ['singular' => 'Land', 'plural' => 'Lands'],
     ],
+    'not_legal' => 'Not legal in',
+    'restricted'=> 'Restricted in',
 ];

@@ -10,5 +10,6 @@ return [
     'confirm_password' => 'Confirmar Contraseña',
     'register' => 'REGISTRARSE',
     'google' => 'Continuar con Google',
-    'github' => 'Continuar con GitHub'
+    'github' => 'Continuar con GitHub',
+    'facebook'=> 'Continuar con Facebook',
 ];

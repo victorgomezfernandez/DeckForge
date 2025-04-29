@@ -38,6 +38,7 @@ Route::get('/google-auth/callback', function () {
     return redirect('/home');
 
 });
+
 Route::get('/github-auth/redirect', function () {
 
     return Socialite::driver('github')->redirect();
@@ -60,6 +61,30 @@ Route::get('/github-auth/callback', function () {
     return redirect('/home');
 
 });
+
+Route::get('/facebook-auth/redirect', function () {
+
+    return Socialite::driver('facebook')->redirect();
+
+});
+
+Route::get('/facebook-auth/callback', function () {
+
+    $user_facebook = Socialite::driver('facebook')->user();
+
+    $user = User::updateOrCreate([
+        'facebook_id' => $user_facebook->id,
+    ], [
+        'name' => $user_facebook->name ?? $user_facebook->nickname ?? 'FacebookUser',
+        'email' => $user_facebook->email,
+    ]);
+
+    Auth::login($user);
+
+    return redirect('/home');
+
+});
+
 Route::get('/home', [DecksController::class, 'recentContent'])->name('home');
 Route::get('/decks', [DecksController::class, 'publicDecks'])->name('decks');
 Route::post('/decks', [DecksController::class, 'store'])->name('decks.store')->middleware('auth');
@@ -67,6 +92,7 @@ Route::get('/decks/deck-details/{id}', [DecksController::class, 'deckDetails'])-
 Route::post('/decks/deck-details/{id}/add-card', [DecksController::class, 'addCardToDeck']);
 Route::put('/decks/{deck}/update-thumbnail', [DecksController::class, 'updateDeckThumbnail']);
 Route::put('/decks/{deck}/update-field', [DecksController::class, 'updateField'])->middleware('auth');
+Route::post('/decks/{deck}/update-format', [DecksController::class, 'updateFormat'])->middleware('auth');
 Route::delete('/decks/{deck}', [DecksController::class, 'destroy'])->middleware('auth');
 Route::delete('/decks/{deck}/remove-card/{cardDeckId}', [DecksController::class, 'removeCardFromDeck']);
 Route::get('/decks/deck-details/{id}/cards-html', [DecksController::class, 'getDeckCards']);

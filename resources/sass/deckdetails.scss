@@ -62,6 +62,29 @@
     text-align: center;
 }
 
+.deck-details-select {
+    background-color: #D82596;
+    border-radius: 10px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    width: fit-content;
+    color: white;
+    text-align: center;
+}
+
+.format-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.format-label {
+    font-size: 20px;
+    font-weight: 900;
+}
+
 #deck-delete {
     color: white;
     padding: 3px 8px 3px 8px;

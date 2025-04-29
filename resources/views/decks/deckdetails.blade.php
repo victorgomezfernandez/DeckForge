@@ -4,9 +4,24 @@
         <div class="row">
             <div class="deck-details col-lg-8">
                 <div class="deck-details-info col">
-                    <div class="deck-details-tag col-lg-4">
-                        <span>{{ __('decks.format') }}: {{ Str::ucfirst($deck->format->name) }}</span>
-                    </div>
+                    @if (auth()->check() && auth()->user()->id === $deck->user_id)
+                        <div class="col-lg-4 w-auto">
+                            <div class="format-section">
+                                <label for="formatSelect" class="format-label">{{ __('decks.format') }}:</label>
+                                <select name="deck-format" id="formatSelect" class="deck-details-select form-select">
+                                    <option value="vintage" {{ $deck->format->name === 'vintage' ? 'selected' : '' }}>Vintage
+                                    </option>
+                                    <option value="standard" {{ $deck->format->name === 'standard' ? 'selected' : '' }}>
+                                        Standard
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    @else
+                        <div class="deck-details-tag col-lg-4">
+                            <span>{{ __('decks.format') }}: {{ Str::ucfirst($deck->format->name) }}</span>
+                        </div>
+                    @endif
                     <div class="deck-details-tag col-lg-4">
                         <span>{{ __('decks.card_count') }}</span>
                         <span id="deck-details-count">

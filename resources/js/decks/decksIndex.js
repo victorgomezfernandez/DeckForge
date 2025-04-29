@@ -6,6 +6,7 @@ import { deckCreationValidation } from './deckCreationValidation';
 import { chooseDeckFormatCreation } from './chooseDeckFormatCreation';
 import { updateDeckField } from './updateDeckField';
 import { deleteDeck } from './deleteDeck';
+import changeFormat from './changeFormat';
 
 document.addEventListener('DOMContentLoaded', function () {
     rebindDeleteEvents();
@@ -16,4 +17,5 @@ document.addEventListener('DOMContentLoaded', function () {
     chooseDeckFormatCreation();
     updateDeckField();
     deleteDeck();
+    changeFormat();
 });
