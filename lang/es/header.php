@@ -6,5 +6,6 @@ return [
     'your_decks' => 'Tus mazos',
     'login' => 'Iniciar sesión',
     'logout' => 'Cerrar sesión',
-    'register' => 'Registrarse'
+    'register' => 'Registrarse',
+    'premium' => 'Hazte premium'
 ];

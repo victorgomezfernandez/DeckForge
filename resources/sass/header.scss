@@ -139,3 +139,30 @@
 .format-dropdown:focus {
     background-color: #C8C8C8;
 }
+
+#userDropdown {
+    background-color: transparent;
+    color: black;
+    border: 0;
+}
+
+.user-dropdown-text {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 4px;
+}
+
+.user-dropdown-text::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background-color: black;
+    transition: width 0.3s ease-in-out;
+}
+
+#userDropdown:hover .user-dropdown-text::before {
+    width: 100%;
+}

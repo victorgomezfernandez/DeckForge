@@ -6,5 +6,6 @@ return [
     'your_decks' => 'Your decks',
     'login' => 'Log in',
     'logout' => 'Log out',
-    'register' => 'Register'
+    'register' => 'Register',
+    'premium' => 'Premium subscription'
 ];

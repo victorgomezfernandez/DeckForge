@@ -64,20 +64,29 @@
                 @else
                     <x-deck-create-modal />
                     <li class="nav-item">
-                        <span href="{{ route('decks') }}" class="nav-link underline">
-                            {{ Auth::user()->name }}
-                        </span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('logout') ? 'active' : 'underline' }}"
-                            href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fa-solid fa-right-from-bracket" style="color: black"></i>
-                        </a>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="user-dropdown-text">{{ Auth::user()->name }}</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="userDropdown">
+                                @if (!auth()->user()->subscribed('prod_SE108n2SgYwi6u'))
+                                    <li><a class="dropdown-item" href="#"
+                                            onclick="event.preventDefault(); window.location.href = '/pricing'">{{ __('header.premium') }}</a>
+                                    </li>
+                                @endif
+                                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('header.logout') }}
+                                    </a>
+                                </li>
+                            </ul>
 
+                        </div>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
+
                     </li>
 
                     {{-- <li class="nav-item dropdown">

@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\CardsController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DecksController;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Middleware\EnsureSubscribedUser;
 
 // Route::get('/', function () {
 //     return view('home');
@@ -85,6 +87,16 @@ Route::get('/facebook-auth/callback', function () {
 
 });
 
+Route::get('/pricing', function(){
+    return view('subscription.pricing');
+})->name('pricing')->middleware('auth');
+
+Route::get('checkout/{plan?}', CheckoutController::class)->name('checkout')->middleware('auth');
+
+Route::get('/success', function(){
+    return view('subscription.success');
+})->name('success')->middleware(['auth', EnsureSubscribedUser::class]);
+
 Route::get('/home', [DecksController::class, 'recentContent'])->name('home');
 Route::get('/decks', [DecksController::class, 'publicDecks'])->name('decks');
 Route::post('/decks', [DecksController::class, 'store'])->name('decks.store')->middleware('auth');
@@ -107,6 +119,8 @@ Route::get('/cards/sets/search-sets', [CardsController::class, 'searchSets'])->n
 Route::get('/cards/search-cards', [CardsController::class, 'filterCards'])->name('search-cards');
 Route::get('/cards/sets/{code}/cards', [CardsController::class, 'setCards'])->name('set-cards');
 Route::get('/cards/live-search', [CardsController::class, 'liveSearch'])->name('cards.live-search');
+
+
 
 Auth::routes();
 
