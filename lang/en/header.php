@@ -7,5 +7,6 @@ return [
     'login' => 'Log in',
     'logout' => 'Log out',
     'register' => 'Register',
-    'premium' => 'Premium subscription'
+    'premium' => 'Premium subscription',
+    'check_sub' => 'Check your subscription'
 ];

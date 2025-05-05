@@ -56,13 +56,13 @@
                             </div>
                         </div>
                         <div class="form-socials row mb-2 w-100">
-                            <a href="/google-auth/redirect" class="form-social">
+                            <a href="{{ url('/google-auth/redirect') }}" class="form-social">
                                 <i class="fa-brands fa-google" style="color: white;"></i> {{ __('login_register.google') }} 
                             </a>
-                            <a href="/facebook-auth/redirect" class="form-social">
+                            <a href="{{ url('/facebook-auth/redirect') }}" class="form-social">
                                 <i class="fa-brands fa-facebook" style="color: white;"></i> {{ __('login_register.facebook') }} 
                             </a>
-                            <a href="/github-auth/redirect" class="form-social">
+                            <a href="{{ url('/github-auth/redirect') }}" class="form-social">
                                 <i class="fa-brands fa-github" style="color: white;"></i> {{ __('login_register.github') }}
                             </a>
                         </div>

@@ -12,4 +12,5 @@ return [
     'google' => 'Continue with Google',
     'github' => 'Continue with GitHub',
     'facebook'=> 'Continue with Facebook',
+    'email_exists' => 'There is already an account with that e-mail. Log in with the original provider'
 ];

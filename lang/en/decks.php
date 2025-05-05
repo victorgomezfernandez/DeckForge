@@ -5,6 +5,9 @@ return [
     'description' => 'Description',
     'set_as_public' => 'Set as public',
     'create' => 'CREATE',
+    'limit_reached' => 'DECKS CREATION LIMIT REACHED',
+    'subscribe_notice' => 'Susbscribe to deckfoundry PREMIUM to create more decks',
+    'subscribe' => 'SEE PLANS',
     'explore_decks' => 'EXPLORE DECKS',
     'your_decks' => 'YOUR DECKS',
     'advanced_filters' => 'Advanced Filters',
@@ -17,6 +20,7 @@ return [
     'search' => 'Search',
     'card_count' => 'Card count: ',
     'delete_deck' => 'Delete deck',
+    'delete_deck_warning' => 'Are you sure? This action cannot be undone',
     'by' => 'By ',
     'add_cards' => 'Add cards',
     'types' => [

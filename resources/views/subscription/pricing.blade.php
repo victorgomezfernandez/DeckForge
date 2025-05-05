@@ -32,12 +32,12 @@
                 </a>
             </div>
             <div class="col-lg-3 pricing-option">
-                <span class="pricing-period">{{ __('pricing.lifetime') }}</span>
+                <span class="pricing-period">{{ __('pricing.three_years') }}</span>
                 <div class="pricing-price">
-                    <span class="pricing-amount">99,99</span><span class="pricing-coin">€</span>
+                    <span class="pricing-amount">69,99</span><span class="pricing-coin">€</span>
                 </div>
                 <span class="pricing-details">
-                    {{ __('pricing.lifetime_desc') }}
+                    {{ __('pricing.three_years_desc') }}
                 </span>
                 <a href="{{ route('checkout', ['plan' => 'price_1RJYy5FMriy1hvBP9tJILxxj']) }}" class="pricing-button btn btn-primary">
                     {{ __('pricing.sign_up') }}

@@ -12,4 +12,5 @@ return [
     'google' => 'Continuar con Google',
     'github' => 'Continuar con GitHub',
     'facebook'=> 'Continuar con Facebook',
+    'email_exists' => 'Ya existe una cuenta con este correo. Usa el proveedor con el que te registraste inicialmente'
 ];

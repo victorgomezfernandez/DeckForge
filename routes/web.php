@@ -5,97 +5,33 @@ use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DecksController;
-use App\Models\User;
-use Laravel\Socialite\Facades\Socialite;
 use App\Http\Middleware\EnsureSubscribedUser;
-
-// Route::get('/', function () {
-//     return view('home');
-// });
-
-// Route::get('/home', function () {
-//     return view('home');
-// });
+use App\Http\Middleware\EnsureUnsubscribedUser;
+use App\Http\Controllers\SocialAuthController;
 
 Route::get('/', [DecksController::class, 'recentContent'])->name('home');
-Route::get('/google-auth/redirect', function () {
 
-    return Socialite::driver('google')->redirect();
+Route::get('/{provider}-auth/redirect', [SocialAuthController::class, 'redirect']);
+Route::get('/{provider}-auth/callback', [SocialAuthController::class, 'callback']);
 
-});
-
-Route::get('/google-auth/callback', function () {
-
-    $user_google = Socialite::driver('google')->user();
-
-    $user = User::updateOrCreate([
-        'google_id' => $user_google->id,
-    ], [
-        'name' => $user_google->name,
-        'email' => $user_google->email,
-    ]);
-
-    Auth::login($user);
-
-    return redirect('/home');
-
-});
-
-Route::get('/github-auth/redirect', function () {
-
-    return Socialite::driver('github')->redirect();
-
-});
-
-Route::get('/github-auth/callback', function () {
-
-    $user_github = Socialite::driver('github')->user();
-
-    $user = User::updateOrCreate([
-        'github_id' => $user_github->id,
-    ], [
-        'name' => $user_github->name ?? $user_github->nickname ?? 'GitHubUser',
-        'email' => $user_github->email,
-    ]);
-
-    Auth::login($user);
-
-    return redirect('/home');
-
-});
-
-Route::get('/facebook-auth/redirect', function () {
-
-    return Socialite::driver('facebook')->redirect();
-
-});
-
-Route::get('/facebook-auth/callback', function () {
-
-    $user_facebook = Socialite::driver('facebook')->user();
-
-    $user = User::updateOrCreate([
-        'facebook_id' => $user_facebook->id,
-    ], [
-        'name' => $user_facebook->name ?? $user_facebook->nickname ?? 'FacebookUser',
-        'email' => $user_facebook->email,
-    ]);
-
-    Auth::login($user);
-
-    return redirect('/home');
-
-});
 
 Route::get('/pricing', function(){
     return view('subscription.pricing');
-})->name('pricing')->middleware('auth');
+})->name('pricing')->middleware(['auth', EnsureUnsubscribedUser::class]);
 
 Route::get('checkout/{plan?}', CheckoutController::class)->name('checkout')->middleware('auth');
 
 Route::get('/success', function(){
     return view('subscription.success');
 })->name('success')->middleware(['auth', EnsureSubscribedUser::class]);
+
+Route::post('/subscription/cancel', function () {
+    $user = Auth::user();
+    if ($user->subscribed('prod_SE108n2SgYwi6u')) {
+        $user->subscription('prod_SE108n2SgYwi6u')->cancel();
+    }
+    return back()->with('status', 'Suscripción cancelada.');
+})->middleware('auth')->name('subscription.cancel');
 
 Route::get('/home', [DecksController::class, 'recentContent'])->name('home');
 Route::get('/decks', [DecksController::class, 'publicDecks'])->name('decks');
@@ -120,8 +56,4 @@ Route::get('/cards/search-cards', [CardsController::class, 'filterCards'])->name
 Route::get('/cards/sets/{code}/cards', [CardsController::class, 'setCards'])->name('set-cards');
 Route::get('/cards/live-search', [CardsController::class, 'liveSearch'])->name('cards.live-search');
 
-
-
 Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

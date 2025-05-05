@@ -1,10 +1,44 @@
 @extends('layouts.app')
+
 @section('content')
     <div class="container">
-        @if (auth()->user()->subscribed('prod_SE108n2SgYwi6u'))
-        <div class="row">
-            CONGRATULATIONS you are sus
+        <div class="success-container">
+            <h2>{{ __('pricing.thanks') }}</h2>
+
+            <p class="subscription-details">{{ __('pricing.new_options') }}</p>
+
+            @if (auth()->user()->subscription('prod_SE108n2SgYwi6u')->ends_at)
+                <h5>{{ __('pricing.sub_ends') }}</h5>
+                <span class="subscription-ends">
+                    {{ auth()->user()->subscription('prod_SE108n2SgYwi6u')->ends_at->format('d M Y') }}
+                </span>
+            @else
+                <span class="subscription-ends">
+                    {{ __('pricing.sub_renews') }}
+                    <button class="btn btn-danger subscription-cancel" type="button" data-bs-toggle="modal"
+                        data-bs-target="#cancelSuscriptionModal">
+                        {{ __('pricing.cancel_sub') }}
+                    </button>
+                    <div class="modal fade" id="cancelSuscriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <button type="button" class="btn-close create-deck-modal-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                <div class="modal-body">
+                                    {{ __('pricing.cancel_confirmation') }}
+                                    <form method="POST" action="{{ route('subscription.cancel') }}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-danger">
+                                            {{ __('pricing.cancel_sub') }}
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </span>
+            @endif
         </div>
-        @endif
     </div>
 @endsection

@@ -7,5 +7,6 @@ return [
     'login' => 'Iniciar sesión',
     'logout' => 'Cerrar sesión',
     'register' => 'Registrarse',
-    'premium' => 'Hazte premium'
+    'premium' => 'Hazte premium',
+    'check_sub' => 'Comprobar tu suscripción'
 ];

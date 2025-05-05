@@ -4,9 +4,6 @@ export function deleteDeck() {
 
     if (deleteButton && deckId) {
         deleteButton.addEventListener('click', () => {
-            if (!confirm('Are you sure you want to delete this deck? This action cannot be undone.')) {
-                return;
-            }
 
             fetch(`/decks/${deckId}`, {
                 method: 'DELETE',

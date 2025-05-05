@@ -9,7 +9,8 @@
                             <div class="format-section">
                                 <label for="formatSelect" class="format-label">{{ __('decks.format') }}:</label>
                                 <select name="deck-format" id="formatSelect" class="deck-details-select form-select">
-                                    <option value="vintage" {{ $deck->format->name === 'vintage' ? 'selected' : '' }}>Vintage
+                                    <option value="vintage" {{ $deck->format->name === 'vintage' ? 'selected' : '' }}>
+                                        Vintage
                                     </option>
                                     <option value="standard" {{ $deck->format->name === 'standard' ? 'selected' : '' }}>
                                         Standard
@@ -29,10 +30,25 @@
                         </span>
                     </div>
                     @if (auth()->check() && auth()->user()->id === $deck->user_id)
-                        <button class="btn btn-danger col-lg-4" id="deck-delete">
+                        <button class="btn btn-danger col-lg-4 deck-delete-button" data-bs-toggle="modal"
+                            data-bs-target="#deleteDeckModal">
                             <span>{{ __('decks.delete_deck') }} <i class="fa-solid fa-trash"
                                     style="color: white;"></i></span>
                         </button>
+                        <div class="modal fade" id="deleteDeckModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <button type="button" class="btn-close create-deck-modal-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    <div class="modal-body create-deck-modal-body">
+                                        <span>{{ __('decks.delete_deck_warning') }}</p>
+                                            <button type="submit" class="btn btn-danger w-100 deck-delete-button"
+                                                id="deck-delete">{{ __('decks.delete_deck') }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
                 </div>
 

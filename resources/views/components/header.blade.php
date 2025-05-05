@@ -30,11 +30,12 @@
                 </li>
                 @auth
                     <li>
-                        <span class="authenticated-link"><a
-                                class="nav-link {{ request()->is('your-decks*') ? 'active' : 'underline' }}"
+                        <span class="authenticated-link">
+                            <a class="nav-link {{ request()->is('your-decks*') ? 'active' : 'underline' }}"
                                 href="{{ route('your-decks') }}">
                                 {{ __('header.your_decks') }}
-                            </a></span>
+                            </a>
+                        </span>
                     </li>
                 @endauth
             </ul>
@@ -62,7 +63,11 @@
                         </li>
                     @endif
                 @else
-                    <x-deck-create-modal />
+                    @if (auth()->user()->subscribed('prod_SE108n2SgYwi6u') || auth()->user()->decks()->count() < 12)
+                        <x-deck-create-modal />
+                    @else
+                        <x-deck-limit-modal />
+                    @endif
                     <li class="nav-item">
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown"
@@ -73,6 +78,10 @@
                                 @if (!auth()->user()->subscribed('prod_SE108n2SgYwi6u'))
                                     <li><a class="dropdown-item" href="#"
                                             onclick="event.preventDefault(); window.location.href = '/pricing'">{{ __('header.premium') }}</a>
+                                    </li>
+                                @else
+                                    <li><a class="dropdown-item" href="#"
+                                            onclick="event.preventDefault(); window.location.href = '/success'">{{ __('header.check_sub') }}</a>
                                     </li>
                                 @endif
                                 <li><a class="dropdown-item" href="{{ route('logout') }}"
@@ -88,24 +97,6 @@
                         </form>
 
                     </li>
-
-                    {{-- <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }}
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li> --}}
                 @endguest
             </ul>
         </div>
