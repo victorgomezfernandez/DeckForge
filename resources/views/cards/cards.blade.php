@@ -1,16 +1,18 @@
-
 @extends('layouts.app')
 
 @section('content')
     <div class="container">
-        <x-search-bar :sets="$sets"/>
+        <div class="search-bar-container">
+            <x-search-bar :sets="$sets" />
+        </div>
 
         @isset($set)
             <div class="d-flex align-items-center justify-items-center gap-3 mb-4">
                 <img src="{{ $set->symbol }}" alt="{{ $set->code }}" style="width: 45px; height: 45px;" />
                 <div>
                     <h4 class="mb-0"><b>{{ $set->name }}</b></h4>
-                    <small class="text-muted">{{ strtoupper($set->code) }} - {{ $cards->total() }} {{ __('cards.cards') }}</small>
+                    <small class="text-muted">{{ strtoupper($set->code) }} - {{ $cards->total() }}
+                        {{ __('cards.cards') }}</small>
                 </div>
             </div>
         @else

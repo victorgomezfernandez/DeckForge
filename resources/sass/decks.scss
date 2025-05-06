@@ -1,3 +1,8 @@
+.search-bar-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
 .deck-card {
     position: relative;
     background-color: #333;
@@ -81,4 +86,10 @@
     list-style: none;
     font-size: 20px;
     font-weight: 900;
+}
+
+@media (max-width: 820px) {
+    .search-bar-container {
+        justify-content: center;
+    }
 }

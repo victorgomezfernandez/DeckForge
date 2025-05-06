@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ asset('images/logo.svg') }}" alt="Mi Imagen">
+            <img src="{{ asset('images/logo.svg') }}" alt="deckfoundry">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -29,20 +29,18 @@
                     </a>
                 </li>
                 @auth
-                    <li>
-                        <span class="authenticated-link">
-                            <a class="nav-link {{ request()->is('your-decks*') ? 'active' : 'underline' }}"
-                                href="{{ route('your-decks') }}">
-                                {{ __('header.your_decks') }}
-                            </a>
-                        </span>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('your-decks*') ? 'active' : 'underline' }}"
+                            href="{{ route('your-decks') }}">
+                            {{ __('header.your_decks') }}
+                        </a>
                     </li>
                 @endauth
             </ul>
 
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav login-links">
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
@@ -63,11 +61,21 @@
                         </li>
                     @endif
                 @else
-                    @if (auth()->user()->subscribed('prod_SE108n2SgYwi6u') || auth()->user()->decks()->count() < 12)
-                        <x-deck-create-modal />
-                    @else
-                        <x-deck-limit-modal />
-                    @endif
+                    <div class="deck-create-normal">
+                        @if (auth()->user()->subscribed('prod_SE108n2SgYwi6u') || auth()->user()->decks()->count() < 12)
+                            <x-deck-create-modal />
+                        @else
+                            <x-deck-limit-modal />
+                        @endif
+                    </div>
+                    <div class="deck-create-mobile">
+                        @if (auth()->user()->subscribed('prod_SE108n2SgYwi6u') || auth()->user()->decks()->count() < 12)
+                            <x-deck-create-modal />
+                        @else
+                            <x-deck-limit-modal />
+                        @endif
+                        <span class="deck-create-mobile-desc">{{ __('header.create_deck') }}</span>
+                    </div>
                     <li class="nav-item">
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown"

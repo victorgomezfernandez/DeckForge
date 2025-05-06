@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container details-container">
         <div class="row">
-            <div class="deck-details col-lg-8">
-                <div class="deck-details-info col">
+            <div class="col-lg-8 col-sm-6">
+                <div class="deck-details-info row">
                     @if (auth()->check() && auth()->user()->id === $deck->user_id)
                         <div class="col-lg-4 w-auto">
                             <div class="format-section">
@@ -55,15 +55,15 @@
 
             </div>
             @if (auth()->check() && auth()->user()->id === $deck->user_id)
-                <div class="col-lg-4 d-flex flex-column align-items-end">
-                    <div class="d-flex align-items-center justify-content-end gap-2" style="width: 100%; max-width: 300px;">
+                <div class="col-lg-4 col-sm-6 live-search-column">
+                    <div class="live-search-input-container">
                         <label for="card-live-search"
-                            class="mb-0 live-search-label"><b>{{ __('decks.add_cards') }}</b></label>
+                            class="live-search-label"><b>{{ __('decks.add_cards') }}</b></label>
                         <input type="search" id="card-live-search" class="form-control live-search-input" />
                     </div>
 
-                    <div class="position-relative" style="width: 100%; max-width: 300px;">
-                        <ul id="card-results" class="list-group position-absolute live-search-results">
+                    <div class="live-search-container">
+                        <ul id="card-results" class="list-group live-search-results">
                         </ul>
                     </div>
                 </div>

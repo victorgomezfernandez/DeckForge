@@ -33,6 +33,14 @@ Route::post('/subscription/cancel', function () {
     return back()->with('status', 'Suscripción cancelada.');
 })->middleware('auth')->name('subscription.cancel');
 
+Route::post('/subscription/resume', function () {
+    $user = Auth::user();
+    if ($user->subscribed('prod_SE108n2SgYwi6u')) {
+        $user->subscription('prod_SE108n2SgYwi6u')->resume();
+    }
+    return back()->with('status', 'Suscripción reanudada. ');
+})->middleware('auth')->name('subscription.resume');
+
 Route::get('/home', [DecksController::class, 'recentContent'])->name('home');
 Route::get('/decks', [DecksController::class, 'publicDecks'])->name('decks');
 Route::post('/decks', [DecksController::class, 'store'])->name('decks.store')->middleware('auth');

@@ -2,83 +2,70 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div style="display: flex; flex-direction: column; gap: 20px;">
-                    <div class="row">
-                        <img src="{{ asset('images/logo-sm.svg') }}" style="height: 71px;" alt="Mi Imagen">
-                    </div>
-                    <div class="row">
-                        <span class="h2"
-                            style="text-align: center; font-weight: 600;">{{ __('login_register.login_to_deckfoundry') }}</span>
+        <div class="login-container">
+            <div class="login-header">
+                <img src="{{ asset('images/logo-sm.svg') }}" class="login-logo" alt="deckfoundry">
+                <span class="h2 login-header-text">{{ __('login_register.login_to_deckfoundry') }}</span>
+            </div>
+            <form method="POST" action="{{ route('login') }}" class="login-form">
+                @csrf
+                <div>
+                    <label for="email">{{ __('login_register.email_address') }}</label>
+                    <div class="col">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror input"
+                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
-                <div class="login-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <div class="row mb-2" style="display: flex;">
-                            <label for="email" class="row mb-2">{{ __('login_register.email_address') }}</label>
-                            <div class="col-md-12">
-                                <input id="email" type="email"
-                                    class="form-control @error('email') is-invalid @enderror row mb-2 input" name="email"
-                                    value="{{ old('email') }}" required autocomplete="email" autofocus>
+                <div>
+                    <label for="password">{{ __('login_register.password') }}</label>
+                    <div class="col">
+                        <input id="password" type="password"
+                            class="form-control @error('password') is-invalid @enderror input" name="password"
+                            value="{{ old('password') }}" required autocomplete="password" autofocus>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-2" style="display: flex;">
-                            <label for="password" class="row mb-2">{{ __('login_register.password') }}</label>
-                            <div class="col-md-12">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror row mb-2 input"
-                                    name="password" value="{{ old('password') }}" required autocomplete="password"
-                                    autofocus>
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                            {{ old('remember') ? 'checked' : '' }}>
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                    {{ old('remember') ? 'checked' : '' }}>
-
-                                <label class="form-check-label" for="remember">
-                                    {{ __('login_register.remember_me') }}
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-socials row mb-2 w-100">
-                            <a href="{{ url('/google-auth/redirect') }}" class="form-social">
-                                <i class="fa-brands fa-google" style="color: white;"></i> {{ __('login_register.google') }} 
-                            </a>
-                            <a href="{{ url('/facebook-auth/redirect') }}" class="form-social">
+                        <label class="form-check-label" for="remember">
+                            {{ __('login_register.remember_me') }}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-socials">
+                    <a href="{{ url('/google-auth/redirect') }}" class="form-social">
+                        <i class="fa-brands fa-google social-icon" style="color: white;"></i> {{ __('login_register.google') }}
+                    </a>
+                    {{-- <a href="{{ url('/facebook-auth/redirect') }}" class="form-social">
                                 <i class="fa-brands fa-facebook" style="color: white;"></i> {{ __('login_register.facebook') }} 
-                            </a>
-                            <a href="{{ url('/github-auth/redirect') }}" class="form-social">
-                                <i class="fa-brands fa-github" style="color: white;"></i> {{ __('login_register.github') }}
-                            </a>
-                        </div>
-                        <div class="row mb-2 w-100">
-                            <button type="submit" class="form-submit btn btn-primary" style="background-color: #D82596; border: 0px;">
-                                {{ __('login_register.login') }}
-                            </button>
-                        </div>
-                        {{-- @if (Route::has('password.request'))
+                            </a> --}}
+                    <a href="{{ url('/github-auth/redirect') }}" class="form-social">
+                        <i class="fa-brands fa-github social-icon" style="color: white;"></i> {{ __('login_register.github') }}
+                    </a>
+                </div>
+                <button type="submit" class="form-submit btn btn-primary login-button">
+                    {{ __('login_register.login') }}
+                </button>
+                {{-- @if (Route::has('password.request'))
                     <a class="btn btn-link" href="{{ route('password.request') }}">
                         {{ __('Forgot Your Password?') }}
                     </a>
                     @endif --}}
-                    </form>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 @endsection

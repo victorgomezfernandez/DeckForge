@@ -2,6 +2,8 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered custom-modal-size">
         <div class="modal-content card-modal">
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
             <div class="card-img-set">
                 <img src="{{ $card->img }}" alt="{{ $card->collector_number }}"
                     class="card-modal-img" />
@@ -38,8 +40,7 @@
                     @endforeach
                 </div>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                aria-label="Close"></button>
+            
         </div>
     </div>
 </div>

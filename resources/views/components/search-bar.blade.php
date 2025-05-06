@@ -1,40 +1,40 @@
 @props(['sets' => collect()])
 <div class="d-flex align-items-center gap-3 mb-3" style="width: fit-content;">
-    <form class="d-flex align-items-center" method="GET" id="searchForm">
-        <div class="d-flex align-items-center">
+    <form method="GET" id="searchForm">
+        <div class="d-flex align-items-center search-div">
             <input type="search" name="query" class="form-control search-input" aria-label="Search"
                 placeholder="{{ __('search_bar.search') }}" />
             <button class="btn search-button" type="submit">
                 <img src="{{ asset('images/search.svg') }}" alt="search" />
             </button>
         </div>
-
-        @if (request()->is('decks*') || request()->is('your-decks*'))
-            <input type="hidden" name="type" id="selectedType" value="Decks" />
-        @else
-            <select class="form-select ms-2 type-select" name="type" id="selectedType">
-                @if (request()->is('cards*'))
-                    <option value="Cards">{{ __('search_bar.cards') }}</option>
-                    <option value="Sets">{{ __('search_bar.sets') }}</option>
-                @else
-                    <option value="Cards">{{ __('search_bar.cards') }}</option>
-                    <option value="Sets">{{ __('search_bar.sets') }}</option>
-                    <option value="Decks">{{ __('search_bar.decks') }}</option>
+        <div class="type-filters">
+            @if (request()->is('decks*') || request()->is('your-decks*'))
+                <input type="hidden" name="type" id="selectedType" value="Decks" />
+            @else
+                <select class="form-select ms-2 type-select" name="type" id="selectedType">
+                    @if (request()->is('cards*'))
+                        <option value="Cards">{{ __('search_bar.cards') }}</option>
+                        <option value="Sets">{{ __('search_bar.sets') }}</option>
+                    @else
+                        <option value="Cards">{{ __('search_bar.cards') }}</option>
+                        <option value="Sets">{{ __('search_bar.sets') }}</option>
+                        <option value="Decks">{{ __('search_bar.decks') }}</option>
+                    @endif
+                </select>
+            @endif
+            @if (!request()->is('home') && !request()->is('your-decks*'))
+                <button type="button" class="btn filters-button ml-3" data-bs-toggle="modal"
+                    data-bs-target="#advancedFilters" id="filtersButton">{{ __('search_bar.advanced_filters') }} <i
+                        class="fa-solid fa-filter"></i></button>
+                @if (request()->is('decks*'))
+                    <x-deck-filters />
                 @endif
-            </select>
-        @endif
-
-        @if (!request()->is('home') && !request()->is('your-decks*'))
-            <button type="button" class="btn filters-button ml-3" data-bs-toggle="modal"
-                data-bs-target="#advancedFilters" id="filtersButton">{{ __('search_bar.advanced_filters') }} <i
-                    class="fa-solid fa-filter"></i></button>
-            @if (request()->is('decks*'))
-                <x-deck-filters />
+                @if (request()->is('cards*'))
+                    <x-card-filters :sets="$sets" />
+                @endif
             @endif
-            @if (request()->is('cards*'))
-                <x-card-filters :sets="$sets" />
-            @endif
-        @endif
+        </div>
     </form>
 </div>
 

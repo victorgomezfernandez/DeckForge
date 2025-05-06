@@ -8,5 +8,6 @@ return [
     'logout' => 'Log out',
     'register' => 'Register',
     'premium' => 'Premium subscription',
-    'check_sub' => 'Check your subscription'
+    'check_sub' => 'Check your subscription',
+    'create_deck' => 'Create new deck'
 ];

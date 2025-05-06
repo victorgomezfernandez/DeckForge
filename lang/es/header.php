@@ -8,5 +8,6 @@ return [
     'logout' => 'Cerrar sesión',
     'register' => 'Registrarse',
     'premium' => 'Hazte premium',
-    'check_sub' => 'Comprobar tu suscripción'
+    'check_sub' => 'Comprobar tu suscripción',
+    'create_deck' => 'Crear nuevo mazo'
 ];

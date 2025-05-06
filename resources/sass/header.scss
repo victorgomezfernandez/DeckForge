@@ -1,3 +1,13 @@
+.login-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nav-link {
+    width: fit-content;
+}
+
 .nav-link.active {
     text-decoration: none;
     font-weight: bold;
@@ -39,21 +49,6 @@
 
 .add-deck-img {
     transform: scale(80%);
-}
-
-.authenticated-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.authenticated-link::before {
-    content: "";
-    display: block;
-    width: 2px;
-    height: 30px;
-    background-color: black;
-    margin-right: 30px;
 }
 
 .create-deck-modal-header{
@@ -142,8 +137,9 @@
 
 #userDropdown {
     background-color: transparent;
-    color: black;
+    color: #4e4e4e;
     border: 0;
+    font-size: 17px;
 }
 
 .user-dropdown-text {
@@ -167,3 +163,59 @@
     width: 100%;
 }
 
+.deck-create-mobile {
+    display: none;
+}
+
+@media (max-width: 990px) {
+
+    .navbar-nav {
+        gap: 10px;
+    }
+
+    .login-links {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .login-links .nav-item,
+    .login-links .dropdown {
+        width: 100%;
+    }
+
+    .dropdown-menu-end {
+        right: 0 !important;
+        left: auto !important;
+    }
+
+    #userDropdown {
+        width: 100%;
+        text-align: left;
+        margin-top: 10px;
+        margin-left: -10px;
+    }
+
+    .user-dropdown-text {
+        width: 100%;
+    }
+
+    .add-deck-img {
+        margin: 10px 0;
+        display: block;
+    }
+
+    .deck-create-mobile {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        list-style: none;
+        width: fit-content;
+        white-space: nowrap;
+    }
+
+    .deck-create-normal {
+        display: none;
+    }
+}

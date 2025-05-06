@@ -20,4 +20,5 @@ return [
     'sub_renews' => 'Automatic renewal activated',
     'cancel_sub' => 'Cancel subscription',
     'cancel_confirmation' => 'Are you sure you want to cancel your subscription?',
+    'sub_resume' => 'Renew subscription',
 ];

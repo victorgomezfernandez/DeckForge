@@ -8,8 +8,13 @@
     gap: 20px;
 }
 
+.subscription-thanks {
+    text-align: center;
+}
+
 .subscription-details {
     font-size: 20px;
+    text-align: center;
 }
 
 .subscription-ends {
@@ -18,10 +23,24 @@
     font-weight: 900;
     border-radius: 15px;
     padding: 10px;
+    text-align: center;
 }
 
 .subscription-cancel {
     font-size: 20px;
     color: white;
     font-weight: 900;
+}
+
+.resume-button {
+    font-weight: 900;
+    font-size: 18px;
+    background-color: #D82596;
+    border: 0;
+    border-radius: 15px;
+}
+
+.resume-button:hover {
+    border: 0;
+    background-color: #98196a;
 }

@@ -20,4 +20,5 @@ return [
     'sub_renews' => ' Renovación automática activada ',
     'cancel_sub' => 'Cancelar suscripción',
     'cancel_confirmation' => '¿Estás seguro de que quieres cancelar tu suscripción? ',
+    'sub_resume' => 'Renovar suscripción',
 ];
