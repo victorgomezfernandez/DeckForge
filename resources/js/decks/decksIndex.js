@@ -7,6 +7,7 @@ import { chooseDeckFormatCreation } from './chooseDeckFormatCreation';
 import { updateDeckField } from './updateDeckField';
 import { deleteDeck } from './deleteDeck';
 import changeFormat from './changeFormat';
+import { resizeAreas } from './resizeAreas';
 
 document.addEventListener('DOMContentLoaded', function () {
     rebindDeleteEvents();
@@ -18,4 +19,5 @@ document.addEventListener('DOMContentLoaded', function () {
     updateDeckField();
     deleteDeck();
     changeFormat();
+    resizeAreas();
 });

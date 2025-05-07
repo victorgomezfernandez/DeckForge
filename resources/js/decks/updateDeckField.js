@@ -1,6 +1,6 @@
 export function updateDeckField() {
-    const nameInput = document.querySelector('.deck-details-name.deck-details-input');
-    const descriptionInput = document.querySelector('.deck-details-description.deck-details-input');
+    const nameInput = document.getElementById('deckNameInput');
+    const descriptionInput = document.getElementById('deckDescriptionInput');
     const deckId = document.getElementById('deck-id')?.value;
 
     function updateDeckField(field, value) {
@@ -24,13 +24,13 @@ export function updateDeckField() {
     }
 
     if (nameInput) {
-        nameInput.addEventListener('input', (e) => {
+        nameInput.addEventListener('blur', (e) => {
             updateDeckField('name', e.target.value.trim());
         });
     }
 
     if (descriptionInput) {
-        descriptionInput.addEventListener('input', (e) => {
+        descriptionInput.addEventListener('blur', (e) => {
             updateDeckField('description', e.target.value.trim());
         });
     }

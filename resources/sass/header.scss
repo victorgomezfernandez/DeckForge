@@ -163,8 +163,16 @@
     width: 100%;
 }
 
-.deck-create-mobile {
-    display: none;
+.deck-create-format {
+    background-color: #C8C8C8;
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+@media (max-width: 1200px) {
+    .navbar-nav {
+        gap: 20px;
+    }
 }
 
 @media (max-width: 990px) {
@@ -203,19 +211,5 @@
     .add-deck-img {
         margin: 10px 0;
         display: block;
-    }
-
-    .deck-create-mobile {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        align-items: center;
-        list-style: none;
-        width: fit-content;
-        white-space: nowrap;
-    }
-
-    .deck-create-normal {
-        display: none;
     }
 }

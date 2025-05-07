@@ -8,7 +8,7 @@
             <p class="subscription-details">{{ __('pricing.new_options') }}</p>
 
             @if (auth()->user()->subscription('prod_SE108n2SgYwi6u')->ends_at)
-                <h5>{{ __('pricing.sub_ends') }}</h5>
+                <p class="subscription-details">{{ __('pricing.sub_ends') }}</p>
                 <span class="subscription-ends">
                     {{ auth()->user()->subscription('prod_SE108n2SgYwi6u')->ends_at->format('d M Y') }}
                 </span>

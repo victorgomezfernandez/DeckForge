@@ -9,43 +9,43 @@
             <div class="modal-body">
                 <div class="modal-field">
                     <label for="deck_name" class="modal-form-label">{{ __('decks.deck_name') }}</label>
-                    <input type="text" class="modal-input form-control" name="deck_name">
+                    <input type="text" class="modal-input form-control" name="deck_name" value="{{ request('deck_name') }}">
                 </div>
                 <div class="modal-field">
                     <label for="deck_format" class="modal-form-label">{{ __('decks.format') }}</label>
                     <select class="modal-input form-select" name="deck_format">
                         <option value="">{{ __('decks.any') }}</option>
-                        <option value="Standard">Standard</option>
-                        <option value="Vintage">Vintage</option>
+                        <option value="Standard" @selected(request('deck_format')==='Standard')>Standard</option>
+                        <option value="Vintage" @selected(request('deck_format')==='Vintage')>Vintage</option>
                     </select>
                 </div>
                 <div class="modal-field">
                     <label for="deck_creator" class="modal-form-label">{{ __('decks.creator') }}</label>
-                    <input type="text" class="modal-input form-control" name="deck_creator">
+                    <input type="text" class="modal-input form-control" name="deck_creator" value="{{ request('deck_creator') }}">
                 </div>
                 <div class="modal-field">
                     <label for="deck_colors" class="modal-form-label">{{ __('decks.colors') }}</label>
                     <div class="form-colors">
-                        <label class="form-check-label"><img src="{{ asset('images/costs/W.svg') }}"
-                                class="form-color-img"></label>
+                        @php $selectedColors = request('colors', []) @endphp
                         <input class="form-check-input modal-form-checkbox" type="checkbox" id="whiteCheck"
-                            name="colors[]" value="W">
-                            <label class="form-check-label"><img src="{{ asset('images/costs/U.svg') }}"
-                                    class="form-color-img"></label>
+                            name="colors[]" value="W" @checked(in_array('W', $selectedColors))>
+                        <label class="form-check-label"><img src="{{ asset('images/costs/W.svg') }}" class="form-color-img"></label>
+
                         <input class="form-check-input modal-form-checkbox" type="checkbox" id="blueCheck"
-                            name="colors[]" value="U">
-                            <label class="form-check-label"><img src="{{ asset('images/costs/B.svg') }}"
-                                    class="form-color-img"></label>
+                            name="colors[]" value="U" @checked(in_array('U', $selectedColors))>
+                        <label class="form-check-label"><img src="{{ asset('images/costs/U.svg') }}" class="form-color-img"></label>
+
                         <input class="form-check-input modal-form-checkbox" type="checkbox" id="blackCheck"
-                            name="colors[]" value="B">
-                            <label class="form-check-label"><img src="{{ asset('images/costs/R.svg') }}"
-                                    class="form-color-img"></label>
+                            name="colors[]" value="B" @checked(in_array('B', $selectedColors))>
+                        <label class="form-check-label"><img src="{{ asset('images/costs/B.svg') }}" class="form-color-img"></label>
+
                         <input class="form-check-input modal-form-checkbox" type="checkbox" id="redCheck"
-                            name="colors[]" value="R">
-                            <label class="form-check-label"><img src="{{ asset('images/costs/G.svg') }}"
-                                    class="form-color-img"></label>
+                            name="colors[]" value="R" @checked(in_array('R', $selectedColors))>
+                        <label class="form-check-label"><img src="{{ asset('images/costs/R.svg') }}" class="form-color-img"></label>
+
                         <input class="form-check-input modal-form-checkbox" type="checkbox" id="greenCheck"
-                            name="colors[]" value="G">
+                            name="colors[]" value="G" @checked(in_array('G', $selectedColors))>
+                        <label class="form-check-label"><img src="{{ asset('images/costs/G.svg') }}" class="form-color-img"></label>
                     </div>
                 </div>
             </div>

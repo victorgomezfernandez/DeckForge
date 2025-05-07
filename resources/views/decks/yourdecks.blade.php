@@ -16,7 +16,9 @@
         @else
             <ul class="no-decks">
                 Crea un nuevo mazo aquí:
-                <x-deck-create-modal />
+                <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#createDeckModal">
+                    <img class="add-deck-img" src="{{ asset('images/add.svg') }}" alt="add deck">
+                </button>
             </ul>
         @endif
     </div>

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="{{ url('/home') }}">
             <img src="{{ asset('images/logo.svg') }}" alt="deckfoundry">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -62,19 +62,10 @@
                     @endif
                 @else
                     <div class="deck-create-normal">
-                        @if (auth()->user()->subscribed('prod_SE108n2SgYwi6u') || auth()->user()->decks()->count() < 12)
-                            <x-deck-create-modal />
-                        @else
-                            <x-deck-limit-modal />
-                        @endif
-                    </div>
-                    <div class="deck-create-mobile">
-                        @if (auth()->user()->subscribed('prod_SE108n2SgYwi6u') || auth()->user()->decks()->count() < 12)
-                            <x-deck-create-modal />
-                        @else
-                            <x-deck-limit-modal />
-                        @endif
-                        <span class="deck-create-mobile-desc">{{ __('header.create_deck') }}</span>
+
+                        <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#createDeckModal">
+                            <img class="add-deck-img" src="{{ asset('images/add.svg') }}" alt="add deck">
+                        </button>
                     </div>
                     <li class="nav-item">
                         <div class="dropdown">
@@ -110,3 +101,8 @@
         </div>
     </div>
 </nav>
+@if (auth()->user()->subscribed('prod_SE108n2SgYwi6u') || auth()->user()->decks()->count() < 12)
+    <x-deck-create-modal />
+@else
+    <x-deck-limit-modal />
+@endif

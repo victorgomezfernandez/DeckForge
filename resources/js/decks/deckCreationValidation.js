@@ -15,12 +15,12 @@ export function deckCreationValidation() {
                 nameInput.classList.remove('is-invalid');
             }
 
-            if (!formatInput.value.trim()) {
-                formatDropdown.classList.add('border', 'border-danger');
-                hasError = true;
-            } else {
-                formatDropdown.classList.remove('border', 'border-danger');
-            }
+            // if (!formatInput.value.trim()) {
+            //     formatDropdown.classList.add('border', 'border-danger');
+            //     hasError = true;
+            // } else {
+            //     formatDropdown.classList.remove('border', 'border-danger');
+            // }
 
             return !hasError;
         }
