@@ -1,0 +1,15 @@
+id: 71175
+name: deckfoundry
+environments:
+    production:
+        memory: 1024
+        cli-memory: 512
+        runtime: 'php-8.4:al2'
+        database: deckfoundry
+        build:
+            - 'composer install --no-dev'
+            - 'php artisan event:cache'
+          # - 'npm ci && npm run build && rm -rf node_modules'
+        deploy:
+            - 'php artisan migrate --seed --force'
+            - 'php artisan app:import-scryfall-data'
