@@ -50,9 +50,9 @@
                     <a href="{{ url('/google-auth/redirect') }}" class="form-social">
                         <i class="fa-brands fa-google social-icon" style="color: white;"></i> {{ __('login_register.google') }}
                     </a>
-                    <a href="{{ url('/facebook-auth/redirect') }}" class="form-social">
+                    {{-- <a href="{{ url('/facebook-auth/redirect') }}" class="form-social">
                                 <i class="fa-brands fa-facebook" style="color: white;"></i> {{ __('login_register.facebook') }} 
-                            </a>
+                            </a> --}}
                     <a href="{{ url('/github-auth/redirect') }}" class="form-social">
                         <i class="fa-brands fa-github social-icon" style="color: white;"></i> {{ __('login_register.github') }}
                     </a>
