@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\Http;
 
 class ImportCards extends Command
 {
-    protected $signature = 'app:import-cards';
+    protected $signature = 'app:import-cards {set-import}';
     protected $description = 'Import cards from the Scryfall API';
 
     public function handle()
     {
-        $url = "https://api.scryfall.com/cards/search?q=(set:lea OR set:leb OR set:2ed OR set:3ed OR set:4ed OR set:5ed OR set:6ed OR set:7ed OR set:8ed) (lang:en) unique:prints";
+        $setImport = $this->argument('set-import');
+        $url = "https://api.scryfall.com/cards/search?q=(set:{$setImport}) (lang:en) unique:prints";
         //$url = "https://api.scryfall.com/cards/search?q=(set:lea) lang:en unique:prints";
         //$url = "https://api.scryfall.com/cards/search?q=wear//tear";
         $response = Http::get($url);
