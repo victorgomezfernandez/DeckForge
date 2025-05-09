@@ -101,7 +101,7 @@
         </div>
     </div>
 </nav>
-@if (auth()->user()->subscribed('prod_SE108n2SgYwi6u') || auth()->user()->decks()->count() < 12)
+@if (auth()->check() && (auth()->user()->subscribed('prod_SE108n2SgYwi6u') || auth()->user()->decks()->count() < 12))
     <x-deck-create-modal />
 @else
     <x-deck-limit-modal />
